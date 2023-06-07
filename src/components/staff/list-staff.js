@@ -57,7 +57,7 @@ const List_staff = ({ data }) => {
                 data-original-title="test"
                 data-target="#exampleModal"
               >
-                Add Category
+                Add Worker
               </Button>
               <StaffModal
                 onSubmit={handleCreateStaff}

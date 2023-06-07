@@ -55,7 +55,7 @@ const List_agents = ({ data }) => {
                 data-original-title="test"
                 data-target="#exampleModal"
               >
-                Add Category
+                Add Agent
               </Button>
               <AgentModal
                 onSubmit={handleCreateAgent}
