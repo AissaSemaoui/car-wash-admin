@@ -11,7 +11,7 @@ import { Button } from "reactstrap";
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  const { isAuthorized, setIsAuthorized } = useAuthContext();
+  const { isAuthorized, logOut } = useAuthContext();
   const MENUITEMS = ADMIN_MENUITEMS;
 
   const [mainmenu, setMainMenu] = useState(MENUITEMS);
@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   const handleLogIn = () => navigate("auth/login");
   const handleLogOut = () => {
-    setIsAuthorized(false);
+    logOut();
     handleLogIn();
   };
 

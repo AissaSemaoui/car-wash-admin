@@ -21,8 +21,13 @@ function AuthProvider({ children }) {
     }
   }, []);
 
+  const logOut = () => {
+    setIsAuthorized(false);
+    localStorage.removeItem("token");
+  };
+
   return (
-    <AuthContext.Provider value={{ isAuthorized, setIsAuthorized }}>
+    <AuthContext.Provider value={{ isAuthorized, setIsAuthorized, logOut }}>
       {children}
     </AuthContext.Provider>
   );
