@@ -14,22 +14,14 @@ import {
 
 export const ADMIN_MENUITEMS = [
   {
-    path: "/dashboard",
-    title: "Dashboard",
-    icon: Home,
-    type: "link",
-    badgeType: "primary",
-    active: true,
-  },
-
-  {
     path: "/bookings-list",
     title: "Bookings",
     icon: Calendar,
-    active: false,
+    active: true,
     badgeType: "primary",
     type: "link",
   },
+
   {
     path: "/packages-list",
     title: "Wash Packages",
@@ -61,6 +53,15 @@ export const ADMIN_MENUITEMS = [
     path: "/staff-list",
     title: "Workers",
     icon: Users,
+    type: "link",
+    badgeType: "primary",
+    active: false,
+  },
+
+  {
+    path: "/dashboard",
+    title: "Report",
+    icon: Home,
     type: "link",
     badgeType: "primary",
     active: false,

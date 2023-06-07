@@ -53,11 +53,11 @@ const LoginTabset = () => {
   } = useForm();
 
   const routeChange = () => {
-    navigate("/dashboard");
+    navigate("/bookings-list");
   };
 
   useEffect(() => {
-    if (isAuthorized) navigate("/dashboard");
+    if (isAuthorized) navigate("/bookings-list");
   }, [isAuthorized]);
 
   return (

@@ -44,7 +44,7 @@ function AgentForm({ onSubmit }) {
               {...register("phonenumber", {
                 required: "Phone number is required.",
                 pattern: {
-                  value: /^[0-9]*$/,
+                  value: /^[0-9]{8}$/,
                   message: "Phone number must contain only digits.",
                 },
               })}
