@@ -10,7 +10,7 @@ import { sendRequest } from "../../helper/sendRequest";
 const List_agents = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
 
-  const newData = data.agents.map((row) => ({
+  const newData = data.reverse().agents.map((row) => ({
     "Agent name": row.agentname,
     "Phone number": row.phonenumber,
     id: row._id,

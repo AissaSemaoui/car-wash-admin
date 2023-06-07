@@ -10,7 +10,7 @@ import ExtraServicesModal from "./extra-services-modal";
 const List_extraServices = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
 
-  const newData = data.extraservices.map((row) => ({
+  const newData = data.reverse().extraservices.map((row) => ({
     "Extra service name": row.extraservices,
     id: row._id,
   }));

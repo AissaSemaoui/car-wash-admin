@@ -10,7 +10,7 @@ import StaffModal from "./staff-modal";
 const List_staff = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
 
-  const newData = data.staff.map((row) => ({
+  const newData = data.reverse().staff.map((row) => ({
     "Worker name": row.staffname,
     "Phone number": row.phonenumber,
     "Agent supervisor": row?.agentSupervisor?.agentname,

@@ -7,7 +7,7 @@ import withDataFetching from "../../hoc/withDataFetching";
 import moment from "moment/moment";
 
 const List_bookings = ({ data }) => {
-  const newData = data.booking.map((row) => ({
+  const newData = data.reverse().booking.map((row) => ({
     "Full name": `${row.firstname} ${row.lastname}`,
     "Phone number": row.phonenumber,
     "Agent name": row.AgentInfo[0]?.agentname || "Not assigned",

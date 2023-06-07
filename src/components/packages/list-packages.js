@@ -10,7 +10,7 @@ import { sendRequest } from "../../helper/sendRequest";
 const List_pacakges = ({ data }) => {
   const [openModal, setOpenModal] = useState(false);
 
-  const newData = data.packages.map((row) => ({
+  const newData = data.reverse().packages.map((row) => ({
     "Package name": row.packagename,
     "SUV price": `${row.packageprice?.suv} KWD`,
     "Sedan price": `${row.packageprice?.sedan} KWD`,
