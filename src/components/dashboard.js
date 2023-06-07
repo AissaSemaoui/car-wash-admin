@@ -24,7 +24,6 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Total Bookings</span>
                     <h3 className="mb-0">
-                      ${" "}
                       <CountUp className="counter" end={data?.totalBookings} />
                       <small> This Month</small>
                     </h3>
@@ -66,7 +65,7 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Total Agents</span>
                     <h3 className="mb-0">
-                      $ <CountUp className="counter" end={data.totalAgents} />
+                      <CountUp className="counter" end={data.totalAgents} />
                       <small> This Month</small>
                     </h3>
                   </Media>
@@ -86,7 +85,7 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Total Workers</span>
                     <h3 className="mb-0">
-                      $ <CountUp className="counter" end={data.totalStaff} />
+                      <CountUp className="counter" end={data.totalStaff} />
                       <small> This Month</small>
                     </h3>
                   </Media>
@@ -108,7 +107,7 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Bookings Last Month</span>
                     <h3 className="mb-0">
-                      ${" "}
+                      {" "}
                       <CountUp
                         className="counter"
                         end={data?.monthly?.monthlyBookings}
@@ -156,7 +155,6 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Bookings Last 3 months</span>
                     <h3 className="mb-0">
-                      ${" "}
                       <CountUp
                         className="counter"
                         end={data?.threeMonths?.threeMonthsBookings}
@@ -204,7 +202,6 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Bookings Last Year</span>
                     <h3 className="mb-0">
-                      ${" "}
                       <CountUp
                         className="counter"
                         end={data?.yearly?.yearlyBookings}
