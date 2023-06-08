@@ -1,30 +1,19 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-} from "reactstrap";
+import { Button, Input } from "reactstrap";
 import { sendRequest } from "../../helper/sendRequest";
 import { useDataFetching } from "../../hooks/useDataFetching";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
-  const [open, setOpen] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
   const [data, setData] = useState(myData);
 
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/agents/allagents?select=agentname,_id}`;
 
-  const { data: AgentsList, isLoading, error } = useDataFetching(API_URL);
+  const { data: AgentsList, isLoading } = useDataFetching(API_URL);
 
   const selectRow = (e, i) => {
     if (!e.target.checked) {
@@ -40,7 +29,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       return checkedValues.indexOf(el.id) < 0;
     });
     setData([...updatedData]);
-    toast.success("Successfully Deleted !");
   };
 
   const renderEditable = (cellInfo) => {
@@ -72,15 +60,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
 
       del.splice(index, 1);
       setData([...del]);
-      toast.success("Successfully Deleted !");
     }
-  };
-  const onOpenModal = () => {
-    setOpen(true);
-  };
-
-  const onCloseModal = () => {
-    setOpen(false);
   };
 
   const Capitalize = (str) => {
@@ -106,13 +86,12 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
 
   columns.push({
     name: <b>Change Agent Supervisor</b>,
-    name: <b>Change Agent Supervisor</b>,
+    header: <b>Change Agent Supervisor</b>,
     selector: (row) =>
       isLoading ? (
         <option>Loading... </option>
       ) : (
         <Input
-          defaultValue={row["Agent supervisor"]}
           type="select"
           id="agent"
           className={`form-control`}
@@ -121,13 +100,14 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
               (agent) => agent.agentname === e.target.value
             );
             const API_URL = `${process.env.REACT_APP_BASE_URL}/api/assign-staff/${row.id}`;
-            sendRequest({
-              url: API_URL,
-              method: "POST",
-              body: {
-                agentId: selectedAgent._id,
-              },
-            }).then(toast.success("Agent Supervisor changed !"));
+            if (selectedAgent)
+              sendRequest({
+                url: API_URL,
+                method: "POST",
+                body: {
+                  agentId: selectedAgent._id,
+                },
+              });
           }}
         >
           <option value="">--- change agent ---</option>
@@ -142,7 +122,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
 
   columns.push({
     name: <b>More details</b>,
-    name: <b>More details</b>,
+    header: <b>More details</b>,
     selector: (row) => (
       <span>
         <Link to={`/staff-list/${row.id}`}>
@@ -221,8 +201,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
           striped={true}
           center={true}
         />
-
-        <ToastContainer />
       </Fragment>
     </div>
   );

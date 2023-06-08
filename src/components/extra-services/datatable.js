@@ -1,19 +1,8 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
-import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-} from "reactstrap";
+
 import { sendRequest } from "../../helper/sendRequest";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
@@ -34,7 +23,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       return checkedValues.indexOf(el.id) < 0;
     });
     setData([...updatedData]);
-    toast.success("Successfully Deleted !");
   };
 
   const renderEditable = (cellInfo) => {
@@ -63,8 +51,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       const response = await sendRequest({ url: API_URL, method: "DELETE" });
 
       if (!response?.success) return;
-
-      toast.success("Successfully Deleted !");
 
       del.splice(index, 1);
       setData([...del]);
@@ -169,8 +155,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
           striped={true}
           center={true}
         />
-
-        <ToastContainer />
       </Fragment>
     </div>
   );

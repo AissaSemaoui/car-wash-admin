@@ -1,12 +1,11 @@
 import React, { Fragment } from "react";
-import { Form, FormGroup, Input, Label } from "reactstrap";
+import { Form, FormGroup, Input, Label, Spinner } from "reactstrap";
 import { useDataFetching } from "../../hooks/useDataFetching";
-import { toast } from "react-toastify";
 import { sendRequest } from "../../helper/sendRequest";
 
 function BookingForm({ bookingId }) {
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/agents/allagents?select=agentname,_id}`;
-  const { data: AgentsList, isLoading, error } = useDataFetching(API_URL);
+  const { data: AgentsList, isLoading } = useDataFetching(API_URL);
 
   return (
     <Fragment>
@@ -16,7 +15,7 @@ function BookingForm({ bookingId }) {
             Assign Booking to Agent
           </Label>
           {isLoading ? (
-            <div>Loading...</div>
+            <Spinner />
           ) : (
             <Input
               type="select"
@@ -27,16 +26,17 @@ function BookingForm({ bookingId }) {
                   (agent) => agent.agentname === e.target.value
                 );
                 const API_URL = `${process.env.REACT_APP_BASE_URL}/api/booking/${bookingId}`;
-                sendRequest({
-                  url: API_URL,
-                  method: "PUT",
-                  body: {
-                    agentId: selectedAgent._id,
-                  },
-                }).then(toast.success("Agent Supervisor changed !"));
+                if (selectedAgent)
+                  sendRequest({
+                    url: API_URL,
+                    method: "PUT",
+                    body: {
+                      agentId: selectedAgent._id,
+                    },
+                  });
               }}
             >
-              <option value="">--- change agent ---</option>
+              <option value=" ">--- change agent ---</option>
               {AgentsList?.agents?.map((agent) => (
                 <option key={agent._id} value={agent.agentname}>
                   {agent.agentname}

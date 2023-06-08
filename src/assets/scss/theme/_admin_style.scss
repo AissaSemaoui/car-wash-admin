@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  max-width: 200px;
 }
 
 .card-left {
@@ -915,7 +916,7 @@ a {
         z-index: 1;
       }
     }
-    .product-detail {
+    .product-Details {
       .rating {
         margin-top: 15px !important;
         i {
@@ -1022,7 +1023,7 @@ a {
     }
   }
 }
-// product Detail
+// product Details
 .size-modal {
   &.modal-dialog {
     .modal-header {
@@ -3486,7 +3487,7 @@ $i: 1;
   }
 }
 @media only screen and (max-width: 1199px) {
-  // product detail
+  // product Details
   .product-page-details {
     margin-top: 30px;
   }
@@ -3705,7 +3706,7 @@ $i: 1;
       }
     }
   }
-  // product detail
+  // product Details
   .product-page-details {
     text-align: left !important;
   }
@@ -4358,7 +4359,7 @@ $i: 1;
       }
     }
   }
-  // product detail
+  // product Details
   .product-page-main {
     .btn {
       padding: 5px 12px;

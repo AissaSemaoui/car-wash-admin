@@ -6,11 +6,9 @@ import withDataFetching from "../../hoc/withDataFetching";
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import PackageForm from "./package-form";
-import useRequest from "../../hooks/useRequest";
+import { sendRequest } from "../../helper/sendRequest";
 
 const SinglePackage = () => {
-  const { fetchData, isLoading, response } = useRequest();
-
   const { id } = useParams();
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/wash-packages/${id}`;
 
@@ -22,7 +20,7 @@ const SinglePackage = () => {
       packageprice: values.packageprice,
       packagefeatures: values.packagefeatures.split(","),
     };
-    fetchData({
+    sendRequest({
       url: API_URL,
       method: "PUT",
       body,
@@ -31,7 +29,7 @@ const SinglePackage = () => {
 
   const Content = ({ data: { washPackage } }) => (
     <div className="tab-pane fade show active">
-      <h5 className="f-w-600 f-16">Package Detail</h5>
+      <h5 className="f-w-600 f-16">Package Details</h5>
       <div className="table-responsive profile-table">
         <Table className="table-responsive">
           <tbody>
@@ -86,9 +84,14 @@ const SinglePackage = () => {
     API_URL,
   ]);
 
+  const PackageFormWithDValues = useCallback(
+    withDataFetching(API_URL)(PackageForm),
+    [API_URL]
+  );
+
   return (
     <Fragment>
-      <Breadcrumb title="Booking Detail" parent="Booking List" />
+      <Breadcrumb title="Package Details" parent="Packages List" />
       <Container fluid={true}>
         <Row>
           <Col xl="8">
@@ -96,14 +99,14 @@ const SinglePackage = () => {
               <CardBody>
                 <Tabs>
                   <TabList className="nav nav-tabs tab-coupon">
-                    <Tab className="nav-link">Detail</Tab>
+                    <Tab className="nav-link">Details</Tab>
                     <Tab className="nav-link">Edit</Tab>
                   </TabList>
                   <TabPanel>
                     <ContentWithData />
                   </TabPanel>
                   <TabPanel>
-                    <PackageForm onSubmit={handleUpdatePackage} />
+                    <PackageFormWithDValues onSubmit={handleUpdatePackage} />
                   </TabPanel>
                 </Tabs>
               </CardBody>

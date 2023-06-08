@@ -15,6 +15,11 @@ export const useDataFetching = (url) => {
       }
 
       const jsonData = await response.json();
+
+      if (!jsonData.success) {
+        throw new Error(`Failed loading data`);
+      }
+
       setData(jsonData);
     } catch (error) {
       setError(error.message);
@@ -30,7 +35,7 @@ export const useDataFetching = (url) => {
   const handleRetry = () => {
     setLoading(true);
     setError(null);
-    fetchData(); // Fetch data again
+    fetchData();
   };
 
   return { data, loading, error, handleRetry };

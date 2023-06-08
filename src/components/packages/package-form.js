@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { FormGroup, label, Button, ModalFooter, ModalBody } from "reactstrap";
+import { FormGroup, Button, ModalFooter, ModalBody } from "reactstrap";
 
 function PackageForm({ data, onSubmit }) {
   const {
@@ -8,7 +8,10 @@ function PackageForm({ data, onSubmit }) {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: data,
+    defaultValues: {
+      ...data?.washPackage,
+      packagefeatures: data?.washPackage?.packagefeatures?.join(","),
+    },
   });
 
   return (

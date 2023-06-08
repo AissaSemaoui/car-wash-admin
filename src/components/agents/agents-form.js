@@ -2,12 +2,14 @@ import React, { Fragment } from "react";
 import { useForm } from "react-hook-form";
 import { FormGroup, Button, ModalBody, ModalFooter } from "reactstrap";
 
-function AgentForm({ onSubmit }) {
+function AgentForm({ data, onSubmit }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: data?.agent,
+  });
 
   return (
     <Fragment>

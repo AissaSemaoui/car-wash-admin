@@ -66,7 +66,7 @@ const SingleBooking = () => {
           </tbody>
         </Table>
       </div>
-      <h5 className="f-w-600 f-16">Agent Detail</h5>
+      <h5 className="f-w-600 f-16">Agent Details</h5>
       <div className="table-responsive profile-table">
         {booking?.AgentInfo?.length < 1 ? (
           <h6>No Assigned Agent</h6>
@@ -94,7 +94,7 @@ const SingleBooking = () => {
 
   return (
     <Fragment>
-      <Breadcrumb title="Booking Detail" parent="Booking List" />
+      <Breadcrumb title="Booking Details" parent="Booking List" />
       <Container fluid={true}>
         <Row>
           <Col xl="8">
@@ -102,7 +102,7 @@ const SingleBooking = () => {
               <CardBody>
                 <Tabs>
                   <TabList className="nav nav-tabs tab-coupon">
-                    <Tab className="nav-link">Detail</Tab>
+                    <Tab className="nav-link">Details</Tab>
                     <Tab className="nav-link">Edit</Tab>
                   </TabList>
                   <TabPanel>

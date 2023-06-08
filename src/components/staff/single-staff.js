@@ -5,12 +5,10 @@ import { Card, CardBody, Col, Container, Row, Table } from "reactstrap";
 import withDataFetching from "../../hoc/withDataFetching";
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import useRequest from "../../hooks/useRequest";
 import StaffForm from "./staff-form";
+import { sendRequest } from "../../helper/sendRequest";
 
 const SingleStaff = () => {
-  const { fetchData, isLoading, response } = useRequest();
-
   const { id } = useParams();
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/staff/${id}`;
 
@@ -22,7 +20,7 @@ const SingleStaff = () => {
       phonenumber: values.phonenumber,
     };
 
-    fetchData({
+    sendRequest({
       url: API_URL,
       method: "PUT",
       body,
@@ -31,7 +29,7 @@ const SingleStaff = () => {
 
   const Content = ({ data: { staff } }) => (
     <div className="tab-pane fade show active">
-      <h5 className="f-w-600 f-16">Worker Detail</h5>
+      <h5 className="f-w-600 f-16">Worker Details</h5>
       <div className="table-responsive profile-table">
         <Table className="table-responsive">
           <tbody>
@@ -59,9 +57,14 @@ const SingleStaff = () => {
     API_URL,
   ]);
 
+  const StaffFormWithDValues = useCallback(
+    withDataFetching(API_URL)(StaffForm),
+    [API_URL]
+  );
+
   return (
     <Fragment>
-      <Breadcrumb title="Booking Detail" parent="Booking List" />
+      <Breadcrumb title="Worker Details" parent="Workers List" />
       <Container fluid={true}>
         <Row>
           <Col xl="8">
@@ -69,14 +72,14 @@ const SingleStaff = () => {
               <CardBody>
                 <Tabs>
                   <TabList className="nav nav-tabs tab-coupon">
-                    <Tab className="nav-link">Detail</Tab>
+                    <Tab className="nav-link">Details</Tab>
                     <Tab className="nav-link">Edit</Tab>
                   </TabList>
                   <TabPanel>
                     <ContentWithData />
                   </TabPanel>
                   <TabPanel>
-                    <StaffForm onSubmit={handleUpdatePackage} />
+                    <StaffFormWithDValues onSubmit={handleUpdatePackage} />
                   </TabPanel>
                 </Tabs>
               </CardBody>

@@ -11,7 +11,7 @@ const List_bookings = ({ data }) => {
     "Full name": `${row.firstname} ${row.lastname}`,
     "Phone number": row.phonenumber,
     "Agent name": row.AgentInfo[0]?.agentname || "Not assigned",
-    Area: row.area,
+    Area: `${row.area}, ${row.block}`,
     "Booking date": moment(row.bookingDateTime).format("ddd, MMM D, h:mm A"),
     id: row._id,
   }));

@@ -4,31 +4,16 @@ import { useAuthContext } from "../providers/AuthProvider";
 
 const withAuth = (WrappedComponent) => {
   const AuthenticatedComponent = (props) => {
-    const { isAuthorized, setIsAuthorized } = useAuthContext();
+    const { isAuthorized } = useAuthContext();
     const navigate = useNavigate();
-    useEffect(() => {
-      // Check authentication status
-      const isAuthenticated = checkAuth();
 
-      // Redirect to login if not authenticated
-      if (!isAuthenticated) {
-        // Replace '/login' with the path to your login page
+    useEffect(() => {
+      if (!isAuthorized) {
         navigate("/auth/login");
       }
-    }, []);
+    }, [isAuthorized]);
 
-    // Placeholder authentication check function
-    const checkAuth = () => {
-      // Replace this with your actual authentication check logic
-      // You can read the token from localStorage or use any other method
-      return isAuthorized; // Returns true if token exists, modify as per your logic
-    };
-
-    // Render the wrapped component if authenticated
-    // or redirect to the login page if not authenticated
-    if (!checkAuth) navigate("/auth/login");
-
-    return checkAuth() ? <WrappedComponent {...props} /> : <div></div>;
+    return isAuthorized ? <WrappedComponent {...props} /> : <div></div>;
   };
 
   return AuthenticatedComponent;

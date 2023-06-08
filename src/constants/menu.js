@@ -1,12 +1,4 @@
-import {
-  Home,
-  LogIn,
-  Calendar,
-  Package,
-  Droplet,
-  User,
-  Users,
-} from "react-feather";
+import { Home, Calendar, Package, Droplet, User, Users } from "react-feather";
 
 // ADMIN_MENUITEMS;
 

@@ -1,13 +1,15 @@
 import React, { Fragment } from "react";
 import { useForm } from "react-hook-form";
-import { FormGroup, Label, Button, ModalBody, ModalFooter } from "reactstrap";
+import { FormGroup, Button, ModalBody, ModalFooter } from "reactstrap";
 
-function StaffForm({ onSubmit }) {
+function StaffForm({ data, onSubmit }) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: data?.staff,
+  });
 
   return (
     <Fragment>

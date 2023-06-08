@@ -14,7 +14,7 @@ import Digitalprolist from "../components/products/digital/digital-pro-list";
 import Digitalsubcategory from "../components/products/digital/digital-sub-category";
 import Addproduct from "../components/products/physical/add-product";
 import Category from "../components/products/physical/category";
-import Productdetail from "../components/products/physical/product-detail";
+import Productdetail from "../components/products/physical/product-Details";
 import Productlist from "../components/products/physical/product-list";
 import Subcategory from "../components/products/physical/sub-category";
 import Reports from "../components/reports/report";
@@ -45,7 +45,7 @@ const VendorLayoutRoutes = () => {
             element={<Productlist />}
           />
           <Route
-            path={`${process.env.PUBLIC_URL}/products/physical/product-detail`}
+            path={`${process.env.PUBLIC_URL}/products/physical/product-Details`}
             element={<Productdetail />}
           />
           <Route

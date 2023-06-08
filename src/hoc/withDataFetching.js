@@ -1,4 +1,6 @@
 import { useDataFetching } from "../hooks/useDataFetching";
+import Loader from "../components/common/loader";
+import { Button } from "reactstrap";
 
 // Higher-Order Component (HOC)
 const withDataFetching = (url) => (WrappedComponent) => {
@@ -6,14 +8,14 @@ const withDataFetching = (url) => (WrappedComponent) => {
     const { data, loading, error, handleRetry } = useDataFetching(url);
 
     if (loading) {
-      return <p>Loading...</p>;
+      return <Loader />;
     }
 
     if (error) {
       return (
         <div>
           <p>Error: {error}</p>
-          <button onClick={handleRetry}> Try Again </button>
+          <Button onClick={handleRetry}> Try Again </Button>
         </div>
       );
     }

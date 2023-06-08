@@ -1,33 +1,89 @@
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
+import { sendRequest } from "../helper/sendRequest";
+import { toast } from "react-toastify";
 
 const AuthContext = React.createContext();
 
 function AuthProvider({ children }) {
-  const [isAuthorized, setIsAuthorized] = useState(true); // set if it's admin or vendor
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
-  const checkAuth = () => {
-    // Replace this with your actual authentication check logic
-    // You can read the token from localStorage or use any other method
+  const checkAuth = async () => {
+    let isValid = false;
     const token = localStorage.getItem("token");
-    return !!token; // Returns true if token exists, modify as per your logic
+
+    try {
+      if (!!token) {
+        const API_URL = `${process.env.REACT_APP_BASE_URL}/api/auth/verify-token`;
+
+        const response = await sendRequest({
+          url: API_URL,
+          method: "POST",
+          body: { token },
+          allowNotifications: false,
+        });
+
+        if (!response || !response.success) {
+          return isValid;
+        }
+
+        const newToken = response.token;
+        if (newToken) localStorage.setItem("token", newToken);
+        isValid = true;
+      }
+    } catch {
+      toast.error("Session Expired, Please try again!");
+      return isValid;
+    }
+
+    return isValid;
   };
 
-  useEffect(() => {
-    if (checkAuth()) {
+  const checkIsAuthentitcated = async () => {
+    const isAuthentitcated = await checkAuth();
+    console.log("here is isAuthentitcated : ", isAuthentitcated);
+    if (isAuthentitcated) {
       setIsAuthorized(true);
     } else {
       setIsAuthorized(false);
     }
-  }, []);
+  };
+
+  const logIn = async (values) => {
+    const responseData = await sendRequest({
+      url: `${process.env.REACT_APP_BASE_URL}/api/auth/login`,
+      method: "POST",
+      body: { email: values?.email, password: values?.password },
+    });
+
+    const { token } = responseData;
+
+    if (!token) {
+      setIsAuthorized(false);
+      toast.error("Failed Sign in, Please try again");
+      return responseData;
+    }
+
+    localStorage.setItem("token", token);
+
+    setIsAuthorized(true);
+
+    return responseData;
+  };
 
   const logOut = () => {
     setIsAuthorized(false);
     localStorage.removeItem("token");
   };
 
+  useEffect(() => {
+    checkIsAuthentitcated();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ isAuthorized, setIsAuthorized, logOut }}>
+    <AuthContext.Provider
+      value={{ isAuthorized, setIsAuthorized, logOut, logIn }}
+    >
       {children}
     </AuthContext.Provider>
   );

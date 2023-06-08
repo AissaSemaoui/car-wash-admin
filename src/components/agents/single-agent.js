@@ -6,11 +6,9 @@ import withDataFetching from "../../hoc/withDataFetching";
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import AgentForm from "./agents-form";
-import useRequest from "../../hooks/useRequest";
+import { sendRequest } from "../../helper/sendRequest";
 
 const SingleAgent = () => {
-  const { fetchData, isLoading, response } = useRequest();
-
   const { id } = useParams();
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/agents/${id}`;
 
@@ -22,7 +20,7 @@ const SingleAgent = () => {
       phonenumber: values.phonenumber,
     };
 
-    fetchData({
+    sendRequest({
       url: API_URL,
       method: "PUT",
       body,
@@ -31,7 +29,7 @@ const SingleAgent = () => {
 
   const Content = ({ data: { agent } }) => (
     <div className="tab-pane fade show active">
-      <h5 className="f-w-600 f-16">Agent Detail</h5>
+      <h5 className="f-w-600 f-16">Agent Details</h5>
       <div className="table-responsive profile-table">
         <Table className="table-responsive">
           <tbody>
@@ -67,9 +65,14 @@ const SingleAgent = () => {
     API_URL,
   ]);
 
+  const AgentFormWithDValues = useCallback(
+    withDataFetching(API_URL)(AgentForm),
+    [API_URL]
+  );
+
   return (
     <Fragment>
-      <Breadcrumb title="Booking Detail" parent="Booking List" />
+      <Breadcrumb title="Agent Details" parent="Agents List" />
       <Container fluid={true}>
         <Row>
           <Col xl="8">
@@ -77,14 +80,14 @@ const SingleAgent = () => {
               <CardBody>
                 <Tabs>
                   <TabList className="nav nav-tabs tab-coupon">
-                    <Tab className="nav-link">Detail</Tab>
+                    <Tab className="nav-link">Details</Tab>
                     <Tab className="nav-link">Edit</Tab>
                   </TabList>
                   <TabPanel>
                     <ContentWithData />
                   </TabPanel>
                   <TabPanel>
-                    <AgentForm onSubmit={handleUpdatePackage} />
+                    <AgentFormWithDValues onSubmit={handleUpdatePackage} />
                   </TabPanel>
                 </Tabs>
               </CardBody>

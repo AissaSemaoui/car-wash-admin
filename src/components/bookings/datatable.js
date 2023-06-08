@@ -1,19 +1,9 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-} from "reactstrap";
+import { Button } from "reactstrap";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
   const [open, setOpen] = useState(false);
@@ -33,7 +23,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       return checkedValues.indexOf(el.id) < 0;
     });
     setData([...updatedData]);
-    toast.success("Successfully Deleted !");
   };
 
   const renderEditable = (cellInfo) => {
@@ -58,7 +47,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       const del = data;
       del.splice(index, 1);
       setData([...del]);
-      toast.success("Successfully Deleted !");
     }
   };
   const onOpenModal = () => {
@@ -92,7 +80,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
 
   columns.push({
     name: <b>More details</b>,
-    name: <b>More details</b>,
+    header: <b>More details</b>,
     selector: (row) => (
       <span>
         <Link to={`/bookings-list/${row.id}`}>
@@ -114,8 +102,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
           striped={true}
           center={true}
         />
-
-        <ToastContainer />
       </Fragment>
     </div>
   );

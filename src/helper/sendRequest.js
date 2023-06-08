@@ -1,8 +1,11 @@
+import { toast } from "react-toastify";
+
 export const sendRequest = async ({
   url,
   method = "GET",
   body = null,
   headers = {},
+  allowNotifications = true,
 }) => {
   const requestOptions = {
     method,
@@ -16,14 +19,17 @@ export const sendRequest = async ({
   try {
     const res = await fetch(url, requestOptions);
 
-    if (!res.ok) {
-      throw new Error("Network res was not ok");
+    const responseData = await res.json();
+
+    if (!res.ok || !responseData.success) {
+      if (allowNotifications) toast.error(responseData.message);
+      throw new Error(responseData.message);
     }
 
-    const responseData = await res.json();
+    if (allowNotifications) toast.success(responseData?.message);
 
     return responseData;
   } catch (error) {
-    throw new Error("Request failed!");
+    throw new Error(error.message);
   }
 };

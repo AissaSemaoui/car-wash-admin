@@ -1,49 +1,22 @@
 import React, { Fragment } from "react";
 import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
-import { User, Unlock } from "react-feather";
+import { User } from "react-feather";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { useForm } from "react-hook-form";
-import { sendRequest } from "../../helper/sendRequest";
-import { toast } from "react-toastify";
 import { useAuthContext } from "../../providers/AuthProvider";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const LoginTabset = () => {
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
-  const { isAuthorized, setIsAuthorized } = useAuthContext();
+  const { isAuthorized, logIn } = useAuthContext();
 
   const clickActive = (event) => {
     document.querySelector(".nav-link").classList.remove("show");
     event.target.classList.add("show");
-  };
-
-  const handleLogin = async (values) => {
-    try {
-      const responseData = await sendRequest({
-        url: `${process.env.REACT_APP_BASE_URL}/api/auth/login`,
-        method: "POST",
-        body: { email: values.email, password: values.password },
-      });
-
-      if (!responseData.success) {
-        throw new Error("Failed Sign in");
-      }
-
-      const { token } = responseData;
-
-      // Store the token in client-side storage (e.g., local storage)
-      localStorage.setItem("token", token);
-
-      // Update authentication status in your application
-      setIsAuthorized(true);
-      // (e.g., set isAuthenticated to true)
-    } catch (error) {
-      console.error("Login error:", error);
-      setIsAuthorized(false);
-      toast.error("Failed Sign in, Please try again");
-      // Display error message to the user
-    }
   };
 
   const {
@@ -52,8 +25,10 @@ const LoginTabset = () => {
     formState: { errors },
   } = useForm();
 
-  const routeChange = () => {
-    navigate("/bookings-list");
+  const handleLogin = async (values) => {
+    const logInStatus = await logIn(values);
+
+    if (!logInStatus.success) setError(logInStatus.message);
   };
 
   useEffect(() => {
@@ -100,22 +75,7 @@ const LoginTabset = () => {
                 />
               </FormGroup>
               <div className="form-terms">
-                <div className="custom-control custom-checkbox me-sm-2">
-                  <Label className="d-block">
-                    <Input
-                      className="checkbox_animated"
-                      id="chk-ani2"
-                      type="checkbox"
-                    />
-                    Reminder Me{" "}
-                    <span className="pull-right">
-                      {" "}
-                      <a href="/#" className="btn btn-default forgot-pass p-0">
-                        lost your password
-                      </a>
-                    </span>
-                  </Label>
-                </div>
+                <span>{error}</span>
               </div>
               <div className="form-button">
                 <Button color="primary" type="submit">
