@@ -16,11 +16,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className=" o-hidden widget-cards">
               <CardBody className="bg-warning">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Navigation className="font-warning" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Total Bookings</span>
                     <h3 className="mb-0">
@@ -36,11 +31,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className=" o-hidden  widget-cards">
               <CardBody className="bg-secondary ">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Box className="font-secondary" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Total Earnings</span>
                     <h3 className="mb-0">
@@ -57,11 +47,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className="o-hidden widget-cards">
               <CardBody className="bg-primary">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <MessageSquare className="font-primary" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Total Agents</span>
                     <h3 className="mb-0">
@@ -77,11 +62,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className=" o-hidden widget-cards">
               <CardBody className="bg-danger ">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Users className="font-danger" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Total Workers</span>
                     <h3 className="mb-0">
@@ -99,11 +79,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className=" o-hidden widget-cards">
               <CardBody className="bg-warning">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Navigation className="font-warning" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Bookings Last Month</span>
                     <h3 className="mb-0">
@@ -123,11 +98,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className=" o-hidden  widget-cards">
               <CardBody className="bg-secondary ">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Box className="font-secondary" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Earnings Last Month</span>
                     <h3 className="mb-0">
@@ -147,11 +117,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className="o-hidden widget-cards">
               <CardBody className="bg-primary">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <MessageSquare className="font-primary" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Bookings Last 3 months</span>
                     <h3 className="mb-0">
@@ -170,11 +135,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className=" o-hidden widget-cards">
               <CardBody className="bg-danger ">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Users className="font-danger" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Earnings Last 3 Months</span>
                     <h3 className="mb-0">
@@ -194,11 +154,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className="o-hidden widget-cards">
               <CardBody className="bg-primary">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <MessageSquare className="font-primary" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Bookings Last Year</span>
                     <h3 className="mb-0">
@@ -217,11 +172,6 @@ const Dashboard = ({ data: { data } }) => {
             <Card className=" o-hidden widget-cards">
               <CardBody className="bg-danger ">
                 <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Users className="font-danger" />
-                    </div>
-                  </div>
                   <Media body className="col-8">
                     <span className="m-0">Earnings Last Year</span>
                     <h3 className="mb-0">
