@@ -1,12 +1,11 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { useRolesContext } from "../../../providers/RolesProvider";
+import { useAuthContext } from "../../../providers/AuthProvider";
 
 //images import
 import man from "../../../assets/images/dashboard/man.png";
 
 const UserMenu = () => {
-  const { isAdmin } = useRolesContext();
+  const { logOut } = useAuthContext();
 
   return (
     <Fragment>
@@ -23,34 +22,10 @@ const UserMenu = () => {
           </div>
         </div>
         <ul className="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
-          <li>
-            <Link to={`${process.env.PUBLIC_URL}/settings/profile`}>
-              <i data-feather="user"></i>Edit Profile
-            </Link>
-          </li>
-          {isAdmin && (
-            <>
-              <li>
-                <a href="#javaScript">
-                  <i data-feather="mail"></i>Inbox
-                </a>
-              </li>
-              <li>
-                <a href="#javaScript">
-                  <i data-feather="lock"></i>Lock Screen
-                </a>
-              </li>
-            </>
-          )}
-          <li>
-            <a href="#javaScript">
-              <i data-feather="settings"></i>Settings
-            </a>
-          </li>
-          <li>
-            <Link to={`${process.env.PUBLIC_URL}/`}>
+          <li onClick={logOut}>
+            <span>
               <i data-feather="log-out"></i>Logout
-            </Link>
+            </span>
           </li>
         </ul>
       </li>

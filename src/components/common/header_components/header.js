@@ -1,14 +1,11 @@
 import React, { Fragment, useState } from "react";
 import UserMenu from "./user-menu";
 import { AlignLeft, MoreHorizontal } from "react-feather";
-import { useRolesContext } from "../../../providers/RolesProvider";
 
 //images
 import logo from "../../../assets/images/dashboard/multikart-logo.png";
 
 const Header = () => {
-  const { isAdmin } = useRolesContext();
-
   const [sidebar, setSidebar] = useState(true);
   const [rightSidebar, setRightSidebar] = useState(true);
   const [navMenus, setNavMenus] = useState(false);
@@ -20,39 +17,6 @@ const Header = () => {
     setNavMenus(!navMenus);
   };
 
-  const showRightSidebar = () => {
-    if (rightSidebar) {
-      setRightSidebar(false);
-      document.querySelector(".right-sidebar").classList.add("show");
-    } else {
-      setRightSidebar(true);
-      document.querySelector(".right-sidebar").classList.remove("show");
-    }
-  };
-  const goFull = () => {
-    if (
-      (document.fullScreenElement && document.fullScreenElement !== null) ||
-      (!document.mozFullScreen && !document.webkitIsFullScreen)
-    ) {
-      if (document.documentElement.requestFullScreen) {
-        document.documentElement.requestFullScreen();
-      } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-      } else if (document.documentElement.webkitRequestFullScreen) {
-        document.documentElement.webkitRequestFullScreen(
-          Element.ALLOW_KEYBOARD_INPUT
-        );
-      }
-    } else {
-      if (document.cancelFullScreen) {
-        document.cancelFullScreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitCancelFullScreen) {
-        document.webkitCancelFullScreen();
-      }
-    }
-  };
   const openCloseSidebar = () => {
     if (sidebar) {
       setSidebar(false);
