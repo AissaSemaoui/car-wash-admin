@@ -13,7 +13,14 @@ const withDataFetching = (url) => (WrappedComponent) => {
 
     if (error) {
       return (
-        <div>
+        <div
+          className="d-flex justify-content-center align-items-center max-vh-100"
+          style={{
+            flexDirection: "column",
+            minHeight: "500px",
+            height: "100%",
+          }}
+        >
           <p>Error: {error}</p>
           <Button onClick={handleRetry}> Try Again </Button>
         </div>
