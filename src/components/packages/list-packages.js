@@ -28,7 +28,7 @@ const List_pacakges = ({ data }) => {
     const newPackageData = {
       packagename: data.packagename,
       packageprice: data.packageprice,
-      packagefeatures: data.packagefeatures,
+      packagefeatures: data.packagefeatures.split(","),
     };
 
     await sendRequest({
