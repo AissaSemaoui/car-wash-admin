@@ -193,6 +193,6 @@ const Dashboard = ({ data: { data } }) => {
   );
 };
 
-const API_URL = `KWD{process.env.REACT_APP_BASE_URL}/api/reports/reports`;
+const API_URL = `${process.env.REACT_APP_BASE_URL}/api/reports/reports`;
 
 export default withDataFetching(API_URL)(Dashboard);
