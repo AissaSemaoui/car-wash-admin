@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import LoginTabset from "./loginTabset";
-import { ArrowLeft } from "react-feather";
 import Slider from "react-slick";
-import stats from "../../assets/images/dashboard/stats.png";
+import logo from "../../assets/images/logo.png";
 import "../../assets/scss/slick.scss";
 import "../../assets/scss/slick-theme.scss";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
@@ -23,37 +22,12 @@ const Login = () => {
               <Col className="col-md-5 p-0 card-left">
                 <Card className="bg-primary">
                   <div className="svg-icon">
-                    <img alt="" src={stats} className="Img-fluid" />
+                    <img alt="" src={logo} className="Img-fluid" />
                   </div>
                   <Slider className="single-item" {...settings}>
                     <div>
                       <div>
-                        <h3>Welcome to Multikart</h3>
-                        <p>
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy.
-                        </p>
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        <h3>Welcome to Multikart</h3>
-                        <p>
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy.
-                        </p>
-                      </div>
-                    </div>
-                    <div>
-                      <div>
-                        <h3>Welcome to Multikart</h3>
-                        <p>
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy.
-                        </p>
+                        <h3>Welcome to Q8hand Clean</h3>
                       </div>
                     </div>
                   </Slider>

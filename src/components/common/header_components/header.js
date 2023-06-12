@@ -3,11 +3,10 @@ import UserMenu from "./user-menu";
 import { AlignLeft, MoreHorizontal } from "react-feather";
 
 //images
-import logo from "../../../assets/images/dashboard/multikart-logo.png";
+import logo from "../../../assets/images/logo.png";
 
 const Header = () => {
   const [sidebar, setSidebar] = useState(true);
-  const [rightSidebar, setRightSidebar] = useState(true);
   const [navMenus, setNavMenus] = useState(false);
 
   const toggle = () => {
@@ -38,9 +37,11 @@ const Header = () => {
         <div className="main-header-right row">
           <div className="main-header-left d-lg-none col-auto">
             <div className="logo-wrapper">
-              <a href="index.html">
-                <img className="blur-up lazyloaded" src={logo} alt="" />
-              </a>
+              <img
+                className="blur-up lazyloaded"
+                src={logo}
+                alt="Q8hand clean logo"
+              />
             </div>
           </div>
           <div className="mobile-sidebar col-auto p-0">

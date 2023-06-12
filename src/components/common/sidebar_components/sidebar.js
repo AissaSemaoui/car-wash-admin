@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ADMIN_MENUITEMS } from "../../../constants/menu";
 
 // image import
-import logo from "../../../assets/images/dashboard/multikart-logo.png";
+import logo from "../../../assets/images/logo.png";
 import { useAuthContext } from "../../../providers/AuthProvider";
 import { Button } from "reactstrap";
 
@@ -211,9 +211,7 @@ const Sidebar = () => {
       <div className="page-sidebar">
         <div className="main-header-left d-none d-lg-block">
           <div className="logo-wrapper">
-            <Link to={`${process.env.PUBLIC_URL}/dashboard`}>
-              <img className="blur-up lazyloaded" src={logo} alt="" />
-            </Link>
+            <img className="logo blur-up lazyloaded" src={logo} alt="" />
           </div>
         </div>
         <div className="sidebar custom-scrollbar">

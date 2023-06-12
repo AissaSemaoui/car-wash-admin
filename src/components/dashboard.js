@@ -34,7 +34,7 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Total Earnings</span>
                     <h3 className="mb-0">
-                      ${" "}
+                      KWD{" "}
                       <CountUp className="counter" end={data?.totalEarnings} />
                       <small> This Month</small>
                     </h3>
@@ -101,7 +101,7 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Earnings Last Month</span>
                     <h3 className="mb-0">
-                      ${" "}
+                      KWD{" "}
                       <CountUp
                         className="counter"
                         end={data?.monthly?.monthlyEarnings}
@@ -138,7 +138,7 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Earnings Last 3 Months</span>
                     <h3 className="mb-0">
-                      ${" "}
+                      KWD{" "}
                       <CountUp
                         className="counter"
                         end={data?.threeMonths?.threeMonthsEarnings}
@@ -175,7 +175,7 @@ const Dashboard = ({ data: { data } }) => {
                   <Media body className="col-8">
                     <span className="m-0">Earnings Last Year</span>
                     <h3 className="mb-0">
-                      ${" "}
+                      KWD{" "}
                       <CountUp
                         className="counter"
                         end={data?.yearly?.yearlyEarnings}
@@ -193,6 +193,6 @@ const Dashboard = ({ data: { data } }) => {
   );
 };
 
-const API_URL = `${process.env.REACT_APP_BASE_URL}/api/reports/reports`;
+const API_URL = `KWD{process.env.REACT_APP_BASE_URL}/api/reports/reports`;
 
 export default withDataFetching(API_URL)(Dashboard);

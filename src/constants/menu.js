@@ -34,7 +34,7 @@ export const ADMIN_MENUITEMS = [
 
   {
     path: "/agents-list",
-    title: "Agents",
+    title: "Cars",
     icon: User,
     type: "link",
     badgeType: "primary",

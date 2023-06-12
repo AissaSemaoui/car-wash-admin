@@ -716,7 +716,7 @@ a {
       padding: 50px;
       background-image: url("../../images/dashboard/login-bg.png");
       background-position: center;
-      box-shadow: 1px 5px 24px 0 rgba(255, 128, 132, 0.8);
+      box-shadow: 1px 5px 24px 0 #2a9cf412;
     }
     .form-group {
       margin-bottom: 1.5rem;
@@ -1219,9 +1219,6 @@ a {
         td {
           padding: 12px;
           border-bottom: 0;
-          &:first-child {
-            width: 250px;
-          }
         }
       }
     }
@@ -2520,7 +2517,11 @@ ul.notification-dropdown.onhover-show-div {
           padding-left: 10px;
           height: 100%;
           display: flex;
+          justify-content: center;
           align-items: center;
+        }
+        .logo {
+          height: 100%;
         }
       }
       .sidebar-user {

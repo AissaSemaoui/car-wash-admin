@@ -38,11 +38,11 @@ const List_agents = ({ data }) => {
 
   return (
     <Fragment>
-      <Breadcrumb title="Agents List" parent="Agents" />
+      <Breadcrumb title="Cars List" parent="Cars" />
       <Container fluid={true}>
         <Card>
           <CardHeader>
-            <h5>Agents</h5>
+            <h5>Cars</h5>
           </CardHeader>
 
           <CardBody>
