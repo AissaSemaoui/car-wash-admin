@@ -10,13 +10,13 @@ function BookingForm({ bookingId }) {
   return (
     <Fragment>
       <Form>
-        <FormGroup>
-          <Label htmlFor="agent" className="col-form-label">
-            Assign Booking to Agent
-          </Label>
-          {isLoading ? (
-            <Spinner />
-          ) : (
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <FormGroup>
+            <Label htmlFor="agent" className="col-form-label">
+              Assign Booking to Agent
+            </Label>
             <Input
               type="select"
               id="agent"
@@ -43,8 +43,8 @@ function BookingForm({ bookingId }) {
                 </option>
               ))}
             </Input>
-          )}
-        </FormGroup>
+          </FormGroup>
+        )}
       </Form>
     </Fragment>
   );
