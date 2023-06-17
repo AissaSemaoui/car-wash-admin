@@ -10,7 +10,7 @@ const List_bookings = ({ data }) => {
   const newData = data.booking.reverse().map((row) => ({
     "Full name": `${row.firstname} ${row.lastname}`,
     "Phone number": row.phonenumber,
-    "Agent name": row.AgentInfo[0]?.agentname || "Not assigned",
+    "Agent name": row.AgentInfo?.agentname || "Not assigned",
     Area: `${row.area}, ${row.block}`,
     "Booking date": moment(row.bookingDateTime).format("ddd, MMM D, h:mm A"),
     id: row._id,

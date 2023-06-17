@@ -4,7 +4,7 @@ import { useDataFetching } from "../../hooks/useDataFetching";
 import { sendRequest } from "../../helper/sendRequest";
 
 function BookingForm({ bookingId }) {
-  const API_URL = `${process.env.REACT_APP_BASE_URL}/api/agents/allagents?select=agentname,_id}`;
+  const API_URL = `${process.env.REACT_APP_BASE_URL}/api/available-agents/${bookingId}`;
   const { data: AgentsList, isLoading } = useDataFetching(API_URL);
 
   return (
@@ -20,9 +20,9 @@ function BookingForm({ bookingId }) {
             <Input
               type="select"
               id="agent"
-              className={`form-control`}
+              className="form-control"
               onChange={(e) => {
-                const selectedAgent = AgentsList?.agents?.find(
+                const selectedAgent = AgentsList?.availableAgents?.find(
                   (agent) => agent.agentname === e.target.value
                 );
                 const API_URL = `${process.env.REACT_APP_BASE_URL}/api/booking/${bookingId}`;

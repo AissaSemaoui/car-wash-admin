@@ -68,18 +68,18 @@ const SingleBooking = () => {
       </div>
       <h5 className="f-w-600 f-16">Agent Details</h5>
       <div className="table-responsive profile-table">
-        {booking?.AgentInfo?.length < 1 ? (
+        {!booking?.AgentInfo?.agentname ? (
           <h6>No Assigned Agent</h6>
         ) : (
           <Table className="table-responsive">
             <tbody>
               <tr>
                 <td>Agent Name</td>
-                <td>{booking.AgentInfo[0]?.agentname}</td>
+                <td>{booking.AgentInfo?.agentname}</td>
               </tr>
               <tr>
                 <td>Phone Number</td>
-                <td>{booking.AgentInfo[0]?.agentphonenumber}</td>
+                <td>{booking.AgentInfo?.agentphonenumber}</td>
               </tr>
             </tbody>
           </Table>

@@ -1219,6 +1219,9 @@ a {
         td {
           padding: 12px;
           border-bottom: 0;
+          &:first-child {
+            width: 200px;
+          }
         }
       }
     }
@@ -4168,7 +4171,7 @@ $i: 1;
         tr {
           td {
             &:first-child {
-              min-width: 150px;
+              width: max-content;
             }
           }
         }
