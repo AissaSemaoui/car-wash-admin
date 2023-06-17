@@ -5,9 +5,9 @@ import { Button } from "reactstrap";
 // Higher-Order Component (HOC)
 const withDataFetching = (url) => (WrappedComponent) => {
   const WithDataFetching = (props) => {
-    const { data, loading, error, handleRetry } = useDataFetching(url);
+    const { data, isLoading, error, handleRetry } = useDataFetching(url);
 
-    if (loading) {
+    if (isLoading) {
       return <Loader />;
     }
 

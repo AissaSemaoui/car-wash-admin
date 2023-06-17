@@ -4,7 +4,7 @@ const { useEffect, useState } = require("react");
 export const useDataFetching = (url) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -38,5 +38,5 @@ export const useDataFetching = (url) => {
     fetchData();
   };
 
-  return { data, loading, error, handleRetry };
+  return { data, isLoading, error, handleRetry };
 };

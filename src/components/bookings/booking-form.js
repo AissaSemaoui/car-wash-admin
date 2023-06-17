@@ -37,7 +37,7 @@ function BookingForm({ bookingId }) {
               }}
             >
               <option value=" ">--- change agent ---</option>
-              {AgentsList?.agents?.map((agent) => (
+              {AgentsList?.availableAgents?.map((agent) => (
                 <option key={agent._id} value={agent.agentname}>
                   {agent.agentname}
                 </option>
