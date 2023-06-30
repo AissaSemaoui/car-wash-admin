@@ -12,6 +12,7 @@ import ListAgents from "../components/agents/list-agents";
 import SingleAgent from "../components/agents/single-agent";
 import ListStaff from "../components/staff/list-staff";
 import SingleStaff from "../components/staff/single-staff";
+import Overview from "../components/overview/overview";
 
 const AdminLayoutRoutes = () => {
   return (
@@ -22,6 +23,12 @@ const AdminLayoutRoutes = () => {
             path={`${process.env.PUBLIC_URL}/bookings-list`}
             element={<ListBookings />}
           />
+
+          <Route
+            path={`${process.env.PUBLIC_URL}/overview`}
+            element={<Overview />}
+          />
+
           <Route
             path={`${process.env.PUBLIC_URL}/bookings-list/:id`}
             element={<SingleBooking />}

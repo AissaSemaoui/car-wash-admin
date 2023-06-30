@@ -15,6 +15,15 @@ export const ADMIN_MENUITEMS = [
   },
 
   {
+    path: "/overview",
+    title: "Overview",
+    icon: Calendar,
+    active: true,
+    badgeType: "primary",
+    type: "link",
+  },
+
+  {
     path: "/packages-list",
     title: "Wash Packages",
     icon: Package,
