@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import {
   Breadcrumb,
@@ -14,12 +14,20 @@ import moment from "moment";
 import { sendRequest } from "../../helper/sendRequest";
 import withDataFetching from "../../hoc/withDataFetching";
 
-const AgentsCard = ({ agent, packages = [] }) => {
-  const TIMES = { from: 9, numberOfHours: 8 };
+const TIMES = { from: 9, numberOfHours: 8 };
 
+const AgentsCard = ({ agent, packages = [] }) => {
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [selectedHour, setSelectedHour] = useState(null);
+
+  console.log("this is selected Booking : ", selectedBooking);
+
+  console.log(selectedHour);
   return (
     <div key={agent[0]?.bookingDateTime} className="agent__card">
-      <div className="mini__card">{agent[0]?.AgentInfo?.agentname}</div>
+      <div className="mini__card--wrapper">
+        <div className="mini__card">{agent[0]?.AgentInfo?.agentname}</div>
+      </div>
       <div className="card__hours">
         <label className="card__label">Time : </label>
         <div className="time__wrapper">
@@ -32,14 +40,12 @@ const AgentsCard = ({ agent, packages = [] }) => {
 
             const hour = `${startHour.toString().padStart(2, "0")}:30`;
 
-            const matchingPackage = agent.find(
+            const matchingBooking = agent.find(
               (booking) =>
                 moment(booking.bookingDateTime).format("HH:mm") === hour
             );
 
-            const isMatchingHour = !!matchingPackage;
-
-            console.log(isMatchingHour, hour);
+            const isMatchingHour = !!matchingBooking;
 
             const labelHour = `${startHour
               .toString()
@@ -50,9 +56,15 @@ const AgentsCard = ({ agent, packages = [] }) => {
             return (
               <button
                 key={labelHour}
-                className={`btn time__hour ${
-                  isMatchingHour ? "btn-secondary" : ""
-                }`}
+                className={`overview-btn ${
+                  isMatchingHour
+                    ? `${matchingBooking?.bookingthings[0]?.packagename?.toLowerCase()}`
+                    : ""
+                } ${selectedHour === hour ? "overview-btn--current" : ""}`}
+                onClick={() => {
+                  setSelectedHour(hour);
+                  setSelectedBooking(matchingBooking || null);
+                }}
               >
                 {labelHour}
               </button>
@@ -64,7 +76,16 @@ const AgentsCard = ({ agent, packages = [] }) => {
         <label className="card__label">Packages : </label>
         <div className="packages__wrapper">
           {packages.map((pack) => (
-            <Button key={pack.packageId}>{pack.packagename}</Button>
+            <button
+              key={pack._id}
+              className={`overview-btn ${pack?.packagename?.toLowerCase()} ${
+                selectedBooking?.bookingthings[0]?.packageId === pack._id
+                  ? `package--current`
+                  : ""
+              }`}
+            >
+              {pack.packagename}
+            </button>
           ))}
         </div>
       </div>
@@ -89,6 +110,8 @@ function Overview({ data: { packages } }) {
     }).then((res) => setAgentsData(res?.bookingsPerAgent));
   }, [selectedDay]);
 
+  const agentsDataArray = Object.values(agentsData);
+
   return (
     <Fragment>
       <Breadcrumb title="Overview List" parent="Overview" />
@@ -109,13 +132,14 @@ function Overview({ data: { packages } }) {
               </div>
             </div>
             <div className="agents__card--wrapper">
-              {Object.values(agentsData).map((agent) => (
+              {agentsDataArray.map((agent) => (
                 <AgentsCard
                   agent={agent}
                   packages={packages}
                   key={agent[0]?.AgentInfo?.agentId}
                 />
               ))}
+              {agentsDataArray?.length === 0 && <h3>No Booking Found</h3>}
             </div>
           </CardBody>
         </Card>

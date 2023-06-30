@@ -4387,6 +4387,12 @@ $i: 1;
   padding: 1rem 0rem;
   border: 1px solid $grey-lighter;
   border-radius: 8px;
+  max-width: 100%;
+  & .react-calendar {
+    border-color: $light-gray;
+    border-left: 0px;
+    border-right: 0px;
+  }
 }
 .calendar__show {
   text-align: center;
@@ -4406,11 +4412,12 @@ $i: 1;
 
 .agent__card {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   min-width: 100%;
   border-bottom: 1px solid $grey-lighter;
   padding-bottom: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 .agent__card:last-child {
   border-bottom: none;
@@ -4425,6 +4432,9 @@ $i: 1;
   border-radius: 4px;
   height: max-content;
 }
+.mini__card--wrapper {
+  width: max-content;
+}
 
 .card__label {
   font-weight: 600;
@@ -4436,6 +4446,10 @@ $i: 1;
   gap: 0.5rem;
   flex-wrap: wrap;
 }
+.package--current {
+  outline-offset: 1px;
+  outline: 2px solid $primary-color !important;
+}
 
 .time__wrapper {
   display: grid;
@@ -4443,19 +4457,287 @@ $i: 1;
   grid-auto-flow: column;
   gap: 0.5rem;
 }
-.time__hour {
+.overview-btn {
   color: $font-color;
-  border: 1px solid $dark-gray;
   background: transparent;
   font-size: 14px;
-  &:hover {
-    background-color: $grey-lighter;
-  }
-  &:active {
-    background-color: $light-grey !important;
+  padding: 0.5rem 1rem;
+  border: 1px solid $dark-gray;
+  border-radius: 4px;
+  min-width: max-content;
+}
+.overview-btn--current {
+  outline-offset: 1px;
+  outline: 2px solid $primary-color !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .mini__card--wrapper {
+    min-width: 100%;
   }
 }
 
 /*=====================
   Responsive CSS End
 ==========================*/
+
+/* Basic */
+.basic {
+  background-color: #f2f2f2;
+  color: #333333;
+}
+.basic:hover {
+  background-color: #d9d9d9;
+}
+
+/* Silver */
+.silver {
+  background-color: #c0c0c0;
+  color: #333333;
+}
+.silver:hover {
+  background-color: #a6a6a6;
+}
+
+/* Gold */
+.gold {
+  background-color: #ffd700;
+  color: #333333;
+}
+.gold:hover {
+  background-color: #c0a259;
+}
+
+/* Platinum */
+.platinum {
+  background-color: #e5e4e2;
+  color: #333333;
+}
+.platinum:hover {
+  background-color: #cccbca;
+}
+
+/* Premium */
+.premium {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+.premium:hover {
+  background-color: #545b62;
+}
+
+/* Standard */
+.standard {
+  background-color: #007bff;
+  color: #ffffff;
+}
+.standard:hover {
+  background-color: #0056b3;
+}
+
+/* Pro */
+.pro {
+  background-color: #17a2b8;
+  color: #ffffff;
+}
+.pro:hover {
+  background-color: #138496;
+}
+
+/* Elite */
+.elite {
+  background-color: #6610f2;
+  color: #ffffff;
+}
+.elite:hover {
+  background-color: #4d0cbb;
+}
+
+/* Ultimate */
+.ultimate {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+.ultimate:hover {
+  background-color: #b52d3a;
+}
+
+/* Prime */
+.prime {
+  background-color: #28a745;
+  color: #ffffff;
+}
+.prime:hover {
+  background-color: #1e7e3c;
+}
+
+/* Exclusive */
+.exclusive {
+  background-color: #fd7e14;
+  color: #ffffff;
+}
+.exclusive:hover {
+  background-color: #e2660d;
+}
+
+/* Deluxe */
+.deluxe {
+  background-color: #6f42c1;
+  color: #ffffff;
+}
+.deluxe:hover {
+  background-color: #5c32a7;
+}
+
+/* VIP */
+.vip {
+  background-color: #ffc107;
+  color: #333333;
+}
+.vip:hover {
+  background-color: #d39e00;
+}
+
+/* Signature */
+.signature {
+  background-color: #17a2b8;
+  color: #ffffff;
+}
+.signature:hover {
+  background-color: #138496;
+}
+
+/* Advanced */
+.advanced {
+  background-color: #007bff;
+  color: #ffffff;
+}
+.advanced:hover {
+  background-color: #0056b3;
+}
+
+/* Professional */
+.professional {
+  background-color: #28a745;
+  color: #ffffff;
+}
+.professional:hover {
+  background-color: #1e7e3c;
+}
+
+/* Enterprise */
+.enterprise {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+.enterprise:hover {
+  background-color: #545b62;
+}
+
+/* Business */
+.business {
+  background-color: #6610f2;
+  color: #ffffff;
+}
+.business:hover {
+  background-color: #4d0cbb;
+}
+
+/* Family */
+.family {
+  background-color: #6f42c1;
+  color: #ffffff;
+}
+.family:hover {
+  background-color: #5c32a7;
+}
+
+/* Student */
+.student {
+  background-color: #007bff;
+  color: #ffffff;
+}
+.student:hover {
+  background-color: #0056b3;
+}
+
+/* Individual */
+.individual {
+  background-color: #17a2b8;
+  color: #ffffff;
+}
+.individual:hover {
+  background-color: #138496;
+}
+
+/* Starter */
+.starter {
+  background-color: #28a745;
+  color: #ffffff;
+}
+.starter:hover {
+  background-color: #1e7e3c;
+}
+
+/* Unlimited */
+.unlimited {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+.unlimited:hover {
+  background-color: #b52d3a;
+}
+
+/* Lite */
+.lite {
+  background-color: #17a2b8;
+  color: #ffffff;
+}
+.lite:hover {
+  background-color: #138496;
+}
+
+/* Essential */
+.essential {
+  background-color: #28a745;
+  color: #ffffff;
+}
+.essential:hover {
+  background-color: #1e7e3c;
+}
+
+/* Premier */
+.premier {
+  background-color: #6610f2;
+  color: #ffffff;
+}
+.premier:hover {
+  background-color: #4d0cbb;
+}
+
+/* Diamond */
+.diamond {
+  background-color: #6f42c1;
+  color: #ffffff;
+}
+.diamond:hover {
+  background-color: #5c32a7;
+}
+
+/* Bronze */
+.bronze {
+  background-color: #ffc107;
+  color: #333333;
+}
+.bronze:hover {
+  background-color: #d39e00;
+}
+
+/* Classic */
+.classic {
+  background-color: #007bff;
+  color: #ffffff;
+}
+.classic:hover {
+  background-color: #0056b3;
+}
