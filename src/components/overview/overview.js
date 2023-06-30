@@ -51,7 +51,7 @@ const AgentsCard = ({ agent, packages = [] }) => {
               <button
                 key={labelHour}
                 className={`btn time__hour ${
-                  isMatchingHour ? matchingPackage.packagename : ""
+                  isMatchingHour ? "btn-secondary" : ""
                 }`}
               >
                 {labelHour}
@@ -110,7 +110,11 @@ function Overview({ data: { packages } }) {
             </div>
             <div className="agents__card--wrapper">
               {Object.values(agentsData).map((agent) => (
-                <AgentsCard agent={agent} packages={packages} />
+                <AgentsCard
+                  agent={agent}
+                  packages={packages}
+                  key={agent[0]?.AgentInfo?.agentId}
+                />
               ))}
             </div>
           </CardBody>
