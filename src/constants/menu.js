@@ -18,7 +18,7 @@ export const ADMIN_MENUITEMS = [
     path: "/overview",
     title: "Overview",
     icon: Calendar,
-    active: true,
+    active: false,
     badgeType: "primary",
     type: "link",
   },
