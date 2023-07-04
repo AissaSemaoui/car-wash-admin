@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, ModalBody, ModalHeader } from "reactstrap";
+import { Modal, ModalHeader } from "reactstrap";
 import PackageForm from "./package-form";
 
 function PackageModal({ open, onCloseModal, onSubmit }) {

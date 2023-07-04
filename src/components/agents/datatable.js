@@ -1,13 +1,11 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "reactstrap";
 import { sendRequest } from "../../helper/sendRequest";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
-  const [open, setOpen] = useState(false);
   const [checkedValues, setCheckedValues] = useState([]);
   const [data, setData] = useState(myData);
   const selectRow = (e, i) => {
@@ -56,14 +54,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
       del.splice(index, 1);
       setData([...del]);
     }
-  };
-
-  const onOpenModal = () => {
-    setOpen(true);
-  };
-
-  const onCloseModal = () => {
-    setOpen(false);
   };
 
   const Capitalize = (str) => {

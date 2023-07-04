@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button, Input } from "reactstrap";
 import { sendRequest } from "../../helper/sendRequest";

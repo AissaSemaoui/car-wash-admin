@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import Breadcrumb from "./common/breadcrumb";
-import { Navigation, Box, MessageSquare, Users } from "react-feather";
 import CountUp from "react-countup";
 
 import { Card, CardBody, Col, Container, Media, Row } from "reactstrap";

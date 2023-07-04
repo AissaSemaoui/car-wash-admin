@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react";
 import Breadcrumb from "../common/breadcrumb";
-import data from "../../assets/data/listUser";
 import Datatable from "./datatable";
 import { Button, Card, CardBody, CardHeader, Container } from "reactstrap";
 import withDataFetching from "../../hoc/withDataFetching";

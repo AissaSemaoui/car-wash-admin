@@ -3,7 +3,6 @@ import React, { Fragment, useCallback } from "react";
 import Breadcrumb from "../common/breadcrumb";
 import { Card, CardBody, Col, Container, Row, Table } from "reactstrap";
 import withDataFetching from "../../hoc/withDataFetching";
-import { useDataFetching } from "../../hooks/useDataFetching";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";

@@ -1,29 +1,11 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "reactstrap";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
-  const [open, setOpen] = useState(false);
-  const [checkedValues, setCheckedValues] = useState([]);
   const [data, setData] = useState(myData);
-  const selectRow = (e, i) => {
-    if (!e.target.checked) {
-      setCheckedValues(checkedValues.filter((item, j) => i !== item));
-    } else {
-      checkedValues.push(i);
-      setCheckedValues(checkedValues);
-    }
-  };
-
-  const handleRemoveRow = () => {
-    const updatedData = myData.filter(function (el) {
-      return checkedValues.indexOf(el.id) < 0;
-    });
-    setData([...updatedData]);
-  };
 
   const renderEditable = (cellInfo) => {
     return (
@@ -40,21 +22,6 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
         }}
       />
     );
-  };
-
-  const handleDelete = (index) => {
-    if (window.confirm("Are you sure you wish to delete this item?")) {
-      const del = data;
-      del.splice(index, 1);
-      setData([...del]);
-    }
-  };
-  const onOpenModal = () => {
-    setOpen(true);
-  };
-
-  const onCloseModal = () => {
-    setOpen(false);
   };
 
   const Capitalize = (str) => {

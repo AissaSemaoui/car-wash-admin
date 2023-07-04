@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
 import { User } from "react-feather";
 import { useNavigate } from "react-router-dom";
-import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Form, FormGroup } from "reactstrap";
 import { useForm } from "react-hook-form";
 import { useAuthContext } from "../../providers/AuthProvider";
 import { useEffect } from "react";
@@ -19,11 +19,7 @@ const LoginTabset = () => {
     event.target.classList.add("show");
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const handleLogin = async (values) => {
     const logInStatus = await logIn(values);
