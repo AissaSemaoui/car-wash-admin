@@ -13,6 +13,7 @@ import SingleAgent from "../components/agents/single-agent";
 import ListStaff from "../components/staff/list-staff";
 import SingleStaff from "../components/staff/single-staff";
 import Overview from "../components/overview/overview";
+import MainStepper from "../components/overview/MainStepper";
 
 const AdminLayoutRoutes = () => {
   return (
@@ -26,7 +27,7 @@ const AdminLayoutRoutes = () => {
 
           <Route
             path={`${process.env.PUBLIC_URL}/overview`}
-            element={<Overview />}
+            element={<MainStepper />}
           />
 
           <Route

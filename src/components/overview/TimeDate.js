@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Fragment, useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { Breadcrumb, Card, CardBody, CardHeader, Container } from "reactstrap";
@@ -10,17 +12,28 @@ import { Button } from "@mantine/core";
 
 const TIMES = { from: 9, numberOfHours: 8 };
 
-const AgentsCard = ({ agent, packages = [] }) => {
-  const [selectedBooking, setSelectedBooking] = useState(null);
-  const [selectedHour, setSelectedHour] = useState(null);
+const AgentsCard = ({
+  agent,
+  agentId,
+  selectedAgentId,
+  setFormData,
+  packages = [],
+  selectedHour,
+  setSelectedHour,
+  selectedPackageId,
+}) => {
+  const selectNewAgentId = () => {
+    if (selectedAgentId !== agentId)
+      setFormData((prev) => ({
+        ...prev,
+        selectedAgentId: agentId,
+      }));
+  };
 
-  console.log("this is selected Booking : ", selectedBooking);
-
-  console.log(selectedHour);
   return (
-    <div key={agent[0]?.bookingDateTime} className="agent__card">
+    <div key={agentId} className="agent__card">
       <div className="mini__card--wrapper">
-        <div className="mini__card">{agent[0]?.AgentInfo?.agentname}</div>
+        <div className="mini__card">{agent?.agentname}</div>
       </div>
       <div className="card__hours">
         <label className="card__label">Time : </label>
@@ -34,7 +47,7 @@ const AgentsCard = ({ agent, packages = [] }) => {
 
             const hour = `${startHour.toString().padStart(2, "0")}:30`;
 
-            const matchingBooking = agent.find(
+            const matchingBooking = agent.bookings.find(
               (booking) =>
                 moment(booking.bookingDateTime).format("HH:mm") === hour
             );
@@ -49,6 +62,7 @@ const AgentsCard = ({ agent, packages = [] }) => {
 
             return (
               <Button
+                variant="outline"
                 key={labelHour}
                 className={`overview-btn ${
                   isMatchingHour
@@ -56,8 +70,10 @@ const AgentsCard = ({ agent, packages = [] }) => {
                     : ""
                 } ${selectedHour === hour ? "overview-btn--current" : ""}`}
                 onClick={() => {
-                  setSelectedHour(hour);
-                  setSelectedBooking(matchingBooking || null);
+                  if (!isMatchingHour) {
+                    setSelectedHour(hour);
+                    selectNewAgentId();
+                  }
                 }}
               >
                 {labelHour}
@@ -70,16 +86,15 @@ const AgentsCard = ({ agent, packages = [] }) => {
         <label className="card__label">Packages : </label>
         <div className="packages__wrapper">
           {packages.map((pack) => (
-            <button
+            <Button
+              variant="outline"
               key={pack._id}
               className={`overview-btn ${pack?.packagename?.toLowerCase()} ${
-                selectedBooking?.bookingthings[0]?.packageId === pack._id
-                  ? `package--current`
-                  : ""
+                selectedPackageId === pack?._id ? `package--current` : ""
               }`}
             >
               {pack.packagename}
-            </button>
+            </Button>
           ))}
         </div>
       </div>
@@ -87,9 +102,40 @@ const AgentsCard = ({ agent, packages = [] }) => {
   );
 };
 
-function Overview({ data: { packages } }) {
-  const [selectedDay, setSelectedDay] = useState(new Date());
+function TimeDate({
+  data: { packages },
+  selectedPackageId,
+  scheduledDate,
+  selectedAgentId,
+  setFormData,
+}) {
+  const [selectedHour, setSelectedHour] = useState(scheduledDate?.hour);
+  const [selectedDay, setSelectedDay] = useState(
+    scheduledDate?.date ? new Date(scheduledDate?.date) : new Date()
+  );
   const [agentsData, setAgentsData] = useState({});
+
+  const handleChangeDay = (day) => {
+    setSelectedHour("");
+    setSelectedDay(day);
+  };
+
+  const scheduleDate = () => {
+    const date = moment(selectedDay).format("L");
+
+    setFormData((prev) => ({
+      ...prev,
+      scheduledDate: {
+        date,
+        hour: selectedHour,
+        fullDate: `${date} ${selectedHour}`,
+      },
+    }));
+  };
+
+  useEffect(() => {
+    scheduleDate();
+  }, [selectedHour, selectedDay]);
 
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/booking/allbookings`;
 
@@ -104,44 +150,44 @@ function Overview({ data: { packages } }) {
     }).then((res) => setAgentsData(res?.bookingsPerAgent));
   }, [selectedDay]);
 
-  const agentsDataArray = Object.values(agentsData);
+  const agentsDataArray = Object.entries(agentsData);
 
   return (
     <Fragment>
-      <Breadcrumb title="Overview List" parent="Overview" />
-      <Container fluid={true}>
-        <Card>
-          <CardHeader>
-            <h5>Overview</h5>
-          </CardHeader>
-          <CardBody className="d-flex gap-4 flex-wrap">
-            <div className="calendar__wrapper">
-              <Calendar
-                value={selectedDay}
-                onChange={setSelectedDay}
-                className="mb-3"
-              />
-              <div className="calendar__show">
-                {moment(selectedDay).format("DD, MMM YYYY")}
-              </div>
-            </div>
-            <div className="agents__card--wrapper">
-              {agentsDataArray.map((agent) => (
-                <AgentsCard
-                  agent={agent}
-                  packages={packages}
-                  key={agent[0]?.AgentInfo?.agentId}
-                />
-              ))}
-              {agentsDataArray?.length === 0 && <h3>No Booking Found</h3>}
-            </div>
-          </CardBody>
-        </Card>
-      </Container>
+      <div className="d-flex gap-4 flex-wrap">
+        <div className="calendar__wrapper">
+          <Calendar
+            value={selectedDay}
+            onChange={handleChangeDay}
+            className="mb-3"
+          />
+          <div className="calendar__show">
+            {moment(selectedDay).format("DD, MMM YYYY")}
+          </div>
+        </div>
+        <div className="agents__card--wrapper">
+          {agentsDataArray.map(([agentId, agent]) => (
+            <AgentsCard
+              setSelectedHour={setSelectedHour}
+              selectedHour={selectedAgentId === agentId ? selectedHour : ""}
+              agent={agent}
+              agentId={agentId}
+              selectedPackageId={
+                selectedAgentId === agentId ? selectedPackageId : ""
+              }
+              selectedAgentId={selectedAgentId}
+              setFormData={setFormData}
+              packages={packages}
+              key={agentId}
+            />
+          ))}
+          {agentsDataArray?.length === 0 && <h3>No Booking Found</h3>}
+        </div>
+      </div>
     </Fragment>
   );
 }
 
 const API_URL = `${process.env.REACT_APP_BASE_URL}/api/wash-packages/allpackages`;
 
-export default withDataFetching(API_URL)(Overview);
+export default withDataFetching(API_URL)(TimeDate);

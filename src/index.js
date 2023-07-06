@@ -7,6 +7,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import RolesProvider from "./providers/RolesProvider";
 import AuthProvider from "./providers/AuthProvider";
 import { ToastContainer } from "react-toastify";
+import ThemeProvider from "./providers/ThemeProvider";
 
 const Root = () => {
   return (
@@ -15,7 +16,9 @@ const Root = () => {
         <BrowserRouter basename={"/"}>
           <PerfectScrollbar>
             <RolesProvider>
-              <Routers />
+              <ThemeProvider>
+                <Routers />
+              </ThemeProvider>
             </RolesProvider>
           </PerfectScrollbar>
           <ToastContainer />
