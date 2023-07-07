@@ -136,7 +136,7 @@ function TimeDate({
       scheduledDate: {
         date,
         hour: selectedHour,
-        fullDate: `${date} ${selectedHour}`,
+        fullDate: `${date} ${selectedHour} UTC`,
       },
     }));
   };
@@ -152,7 +152,7 @@ function TimeDate({
       url: API_URL,
       method: "POST",
       body: {
-        selectedDay,
+        selectedDay: `${moment(selectedDay).format("L")} UTC`,
       },
       allowNotifications: false,
     }).then((res) => setAgentsData(res?.bookingsPerAgent));
