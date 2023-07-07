@@ -56,7 +56,7 @@ const AgentsCard = ({
 
             const matchingBooking = agent.bookings.find(
               (booking) =>
-                moment(booking.bookingDateTime).format("HH:mm") === hour
+                moment.utc(booking.bookingDateTime).format("HH:mm") === hour
             );
 
             const isMatchingHour = !!matchingBooking;
