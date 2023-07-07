@@ -15,8 +15,8 @@ export const ADMIN_MENUITEMS = [
   },
 
   {
-    path: "/overview",
-    title: "Overview",
+    path: "/make-booking",
+    title: "Make Booking",
     icon: Calendar,
     active: false,
     badgeType: "primary",

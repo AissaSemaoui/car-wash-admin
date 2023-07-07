@@ -9,7 +9,6 @@ import {
 } from "@mantine/core";
 import "./booking.css";
 import VehicleChoice from "./VehicleChoice";
-import Packages from "./Packages";
 import ExtraServices from "./ExtraServices";
 import UserDetails from "./UserDetails";
 import Complete from "./Complete";
@@ -55,7 +54,7 @@ function MainStepper() {
 
   const nextStep = async () => {
     const goNext = () => {
-      setActive((current) => (current < 5 ? current + 1 : current));
+      setActive((current) => (current < 4 ? current + 1 : current));
     };
 
     setLoading(true);
@@ -109,24 +108,6 @@ function MainStepper() {
               <VehicleChoice
                 selectedVehicle={formData?.selectedVehicle}
                 setFormData={setFormData}
-              />
-            </Stepper.Step>
-            <Stepper.Step
-              label="Packages"
-              allowStepClick={!!formData?.selectedVehicle}
-              allowStepSelect={!!formData?.selectedVehicle}
-              completedIcon={
-                <img src="/images/step 2.png" className="stepper__icon" />
-              }
-              icon={
-                <img src="/images/dark step 2.png" className="stepper__icon" />
-              }
-              loading={active === 1 && isLoading}
-            >
-              <Packages
-                selectedPackageId={formData?.selectedPackageId}
-                setFormData={setFormData}
-                selectedVehicle={formData?.selectedVehicle}
               />
             </Stepper.Step>
             <Stepper.Step
@@ -209,9 +190,9 @@ function MainStepper() {
             >
               Prev
             </Button>
-            {active < 5 && (
+            {active < 4 && (
               <Button onClick={nextStep} disabled={isLoading} size="lg">
-                {active === 4 ? "Book Now" : "Next"}
+                {active === 3 ? "Book Now" : "Next"}
               </Button>
             )}
           </Flex>

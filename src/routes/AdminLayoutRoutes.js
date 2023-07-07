@@ -12,7 +12,6 @@ import ListAgents from "../components/agents/list-agents";
 import SingleAgent from "../components/agents/single-agent";
 import ListStaff from "../components/staff/list-staff";
 import SingleStaff from "../components/staff/single-staff";
-import Overview from "../components/overview/overview";
 import MainStepper from "../components/overview/MainStepper";
 
 const AdminLayoutRoutes = () => {
@@ -26,7 +25,7 @@ const AdminLayoutRoutes = () => {
           />
 
           <Route
-            path={`${process.env.PUBLIC_URL}/overview`}
+            path={`${process.env.PUBLIC_URL}/make-booking`}
             element={<MainStepper />}
           />
 

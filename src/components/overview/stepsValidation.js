@@ -18,24 +18,18 @@ export const validateStep = async (
       }
       return true;
       break;
-    case 1:
-      if (!formData?.selectedPackageId) {
-        setError("Please select a package");
+    case 2:
+      if (
+        !formData?.scheduledDate?.hour ||
+        !formData?.scheduledDate?.fullDate ||
+        !formData?.selectedPackageId
+      ) {
+        setError("Please schedule a date and select a package");
         return false;
       }
       return true;
       break;
     case 3:
-      if (
-        !formData?.scheduledDate?.hour ||
-        !formData?.scheduledDate?.fullDate
-      ) {
-        setError("Please schedule a date and hour");
-        return false;
-      }
-      return true;
-      break;
-    case 4:
       if (!formData.selectedPaymentMethod) {
         setError("Please select a payment method");
         return false;

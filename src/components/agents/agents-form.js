@@ -47,7 +47,7 @@ function AgentForm({ data, onSubmit }) {
                 required: "Phone number is required.",
                 pattern: {
                   value: /^[0-9]{8}$/,
-                  message: "Phone number must contain only digits.",
+                  message: "Phone number must contain 8 digits.",
                 },
               })}
             />

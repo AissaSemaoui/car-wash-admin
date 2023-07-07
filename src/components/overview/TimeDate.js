@@ -30,6 +30,13 @@ const AgentsCard = ({
       }));
   };
 
+  const selectPackageId = (packageId) => {
+    setFormData((prev) => ({
+      ...prev,
+      selectedPackageId: packageId,
+    }));
+  };
+
   return (
     <div key={agentId} className="agent__card">
       <div className="mini__card--wrapper">
@@ -89,6 +96,7 @@ const AgentsCard = ({
             <Button
               variant="outline"
               key={pack._id}
+              onClick={() => selectPackageId(pack._id)}
               className={`overview-btn ${pack?.packagename?.toLowerCase()} ${
                 selectedPackageId === pack?._id ? `package--current` : ""
               }`}
@@ -172,9 +180,7 @@ function TimeDate({
               selectedHour={selectedAgentId === agentId ? selectedHour : ""}
               agent={agent}
               agentId={agentId}
-              selectedPackageId={
-                selectedAgentId === agentId ? selectedPackageId : ""
-              }
+              selectedPackageId={selectedPackageId}
               selectedAgentId={selectedAgentId}
               setFormData={setFormData}
               packages={packages}
