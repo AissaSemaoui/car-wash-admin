@@ -4471,6 +4471,15 @@ $i: 1;
   outline: 2px solid $primary-color !important;
 }
 
+.logo__img {
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  padding: 0.5rem;
+  object-fit: contain;
+  box-shadow: none;
+}
+
 @media only screen and (max-width: 768px) {
   .mini__card--wrapper {
     min-width: 100%;

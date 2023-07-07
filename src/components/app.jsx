@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Sidebar from "./common/sidebar_components/sidebar";
-import RightSidebar from "./common/right-sidebar";
 import Footer from "./common/footer";
 import Header from "./common/header_components/header";
 import { Outlet } from "react-router-dom";
@@ -31,7 +30,6 @@ const App = (props) => {
         <Header />
         <div className="page-body-wrapper">
           <Sidebar />
-          {isAdmin && <RightSidebar />}
           <div className="page-body">
             <Outlet />
           </div>
