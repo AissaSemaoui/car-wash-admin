@@ -57,9 +57,9 @@ const SingleBooking = () => {
             <tr>
               <td>Booking Date:</td>
               <td>
-                {moment(booking.bookingDateTime).format(
-                  "dddd, MMMM Do YYYY, h:mm A"
-                )}
+                {moment
+                  .utc(booking.bookingDateTime)
+                  .format("dddd, MMMM Do YYYY, h:mm A")}
               </td>
             </tr>
           </tbody>
