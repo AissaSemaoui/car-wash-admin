@@ -41,7 +41,6 @@ function AuthProvider({ children }) {
 
   const checkIsAuthentitcated = async () => {
     const isAuthentitcated = await checkAuth();
-    console.log("here is isAuthentitcated : ", isAuthentitcated);
     if (isAuthentitcated) {
       setIsAuthorized(true);
     } else {
