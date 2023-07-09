@@ -62,6 +62,28 @@ export const validateStep = async (
               resolve(false);
             }
 
+            const assignBooking = async () => {
+              const API_URL = `${process.env.REACT_APP_BASE_URL}/api/booking/${response?.newBooking?._id}`;
+              try {
+                await sendRequest({
+                  url: API_URL,
+                  method: "PUT",
+                  body: {
+                    agentId: formData?.selectedAgentId,
+                  },
+                });
+                resolve(true);
+              } catch (error) {
+                toast.error(
+                  "Failed Assigning agent to booking!, Please assign it manually from booking page"
+                );
+                setError(
+                  "Failed Assigning agent to booking!, Please assign it manually from booking page"
+                );
+                resolve(true);
+              }
+            };
+
             if (
               response.newBooking &&
               formData.selectedPaymentMethod !== "Cash"
@@ -75,30 +97,16 @@ export const validateStep = async (
                 const parsedResponse = JSON.parse(transaction.response);
                 setInvoiceUrl(parsedResponse.Data.Do_TxnHdr[0].InvcURl);
 
-                const API_URL = `${process.env.REACT_APP_BASE_URL}/api/booking/${response?.newBooking?._id}`;
-                try {
-                  await sendRequest({
-                    url: API_URL,
-                    method: "PUT",
-                    body: {
-                      agentId: formData?.selectedAgentId,
-                    },
-                  });
-                  resolve(true);
-                } catch (error) {
-                  toast.error(
-                    "Failed Assigning agent to booking!, Please assign it manually from booking page"
-                  );
-                  setError(
-                    "Failed Assigning agent to booking!, Please assign it manually from booking page"
-                  );
-                  resolve(true);
-                }
+                await assignBooking();
               } else {
                 toast.error("Generating Invoice Failed!");
                 setError("Generating Invoice Failed!");
                 resolve(false);
               }
+            }
+
+            if (formData.selectedPaymentMethod !== "Cash") {
+              await assignBooking();
             }
 
             setFormData((prev) => ({ ...prev, userDetails: values }));
