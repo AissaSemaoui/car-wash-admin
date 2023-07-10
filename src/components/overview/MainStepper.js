@@ -96,6 +96,23 @@ function MainStepper() {
             }}
           >
             <Stepper.Step
+              label="Time & Date"
+              completedIcon={
+                <img src="/images/step 4.png" className="stepper__icon" />
+              }
+              icon={
+                <img src="/images/dark step 4.png" className="stepper__icon" />
+              }
+              loading={active === 0 && isLoading}
+            >
+              <TimeDate
+                scheduledDate={formData?.scheduledDate}
+                selectedAgentId={formData?.selectedAgentId}
+                selectedPackageId={formData?.selectedPackageId}
+                setFormData={setFormData}
+              />
+            </Stepper.Step>
+            <Stepper.Step
               label="Vehicle Choice"
               completedIcon={
                 <img src="/images/step 1.png" className="stepper__icon" />
@@ -103,7 +120,7 @@ function MainStepper() {
               icon={
                 <img src="/images/dark step 1.png" className="stepper__icon" />
               }
-              loading={active === 0 && isLoading}
+              loading={active === 1 && isLoading}
             >
               <VehicleChoice
                 selectedVehicle={formData?.selectedVehicle}
@@ -127,23 +144,7 @@ function MainStepper() {
                 setFormData={setFormData}
               />
             </Stepper.Step>
-            <Stepper.Step
-              label="Time & Date"
-              completedIcon={
-                <img src="/images/step 4.png" className="stepper__icon" />
-              }
-              icon={
-                <img src="/images/dark step 4.png" className="stepper__icon" />
-              }
-              loading={active === 3 && isLoading}
-            >
-              <TimeDate
-                scheduledDate={formData?.scheduledDate}
-                selectedAgentId={formData?.selectedAgentId}
-                selectedPackageId={formData?.selectedPackageId}
-                setFormData={setFormData}
-              />
-            </Stepper.Step>
+
             <Stepper.Step
               label="Provide your Information"
               allowStepClick={!!formData?.scheduledDate?.hour}
@@ -154,7 +155,7 @@ function MainStepper() {
               icon={
                 <img src="/images/dark step 5.png" className="stepper__icon" />
               }
-              loading={active === 4 && isLoading}
+              loading={active === 3 && isLoading}
             >
               <UserDetails
                 userDetailsForm={userDetailsForm}

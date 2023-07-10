@@ -12,13 +12,6 @@ export const validateStep = async (
 ) => {
   switch (active) {
     case 0:
-      if (!formData?.selectedVehicle?.vehicletype) {
-        setError("Please select a vehicle");
-        return false;
-      }
-      return true;
-      break;
-    case 2:
       if (
         !formData?.scheduledDate?.hour ||
         !formData?.scheduledDate?.fullDate ||
@@ -29,6 +22,15 @@ export const validateStep = async (
       }
       return true;
       break;
+
+    case 1:
+      if (!formData?.selectedVehicle?.vehicletype) {
+        setError("Please select a vehicle");
+        return false;
+      }
+      return true;
+      break;
+
     case 3:
       if (!formData.selectedPaymentMethod) {
         setError("Please select a payment method");
