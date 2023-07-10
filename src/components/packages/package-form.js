@@ -57,6 +57,7 @@ function PackageForm({ data, onSubmit }) {
                 }`}
                 id="validationCustom1"
                 type="number"
+                step="0.1"
                 {...register("packageprice.suv", { required: true })}
               />
               {errors.packageprice?.suv && (
@@ -78,6 +79,7 @@ function PackageForm({ data, onSubmit }) {
                 }`}
                 id="validationCustom2"
                 type="number"
+                step="0.1"
                 {...register("packageprice.sedan", { required: true })}
               />
               {errors.packageprice?.sedan && (
@@ -99,6 +101,7 @@ function PackageForm({ data, onSubmit }) {
                 }`}
                 id="validationCustom3"
                 type="number"
+                step="0.1"
                 {...register("packageprice.pickup", { required: true })}
               />
               {errors.packageprice?.pickup && (
@@ -120,6 +123,7 @@ function PackageForm({ data, onSubmit }) {
                 }`}
                 id="validationCustom4"
                 type="number"
+                step="0.1"
                 {...register("packageprice.bike", { required: true })}
               />
               {errors.packageprice?.bike && (
@@ -130,12 +134,33 @@ function PackageForm({ data, onSubmit }) {
             </div>
           </FormGroup>
           <FormGroup className="row">
+            <label className="col-xl-3 col-md-4">
+              <span>*</span> Package Duration
+            </label>
+            <div className="col-xl-8 col-md-7">
+              <input
+                placeholder="Enter package duration..."
+                className={`form-control ${
+                  errors.packageduration ? "is-invalid" : ""
+                }`}
+                id="validationCustom0"
+                type="number"
+                {...register("packageduration", { required: true })}
+              />
+              {errors.packageduration && (
+                <span className="invalid-feedback">
+                  {errors.packageduration.message}
+                </span>
+              )}
+            </div>
+          </FormGroup>
+          <FormGroup className="row">
             <h5>Features : </h5>
             <label className="col-xl-3 col-md-4">
               <span>*</span> Package Features
             </label>
             <div className="col-xl-8 col-md-7">
-              <input
+              <textarea
                 placeholder="Enter package features (comma-separated)..."
                 className={`form-control ${
                   errors.packagefeatures ? "is-invalid" : ""

@@ -18,6 +18,7 @@ const SinglePackage = () => {
     const body = {
       packagename: values.packagename,
       packageprice: values.packageprice,
+      packageduration: values.packageduration,
       packagefeatures: values.packagefeatures.split(","),
     };
     sendRequest({
@@ -70,7 +71,7 @@ const SinglePackage = () => {
               <td>Features:</td>
               <td>
                 {washPackage?.packagefeatures?.map((feature) => (
-                  <div>- {feature}</div>
+                  <div key={feature}>- {feature}</div>
                 ))}
               </td>
             </tr>

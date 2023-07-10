@@ -11,6 +11,9 @@ const List_pacakges = ({ data }) => {
 
   const newData = data.packages.reverse().map((row) => ({
     "Package name": row.packagename,
+    "Package duration": row?.packageduration
+      ? `${row?.packageduration} h`
+      : "Not Assigned",
     "SUV price": `${row.packageprice?.suv} KWD`,
     "Sedan price": `${row.packageprice?.sedan} KWD`,
     "Pickup price": `${row.packageprice?.pickup} KWD`,
@@ -27,6 +30,7 @@ const List_pacakges = ({ data }) => {
     const newPackageData = {
       packagename: data.packagename,
       packageprice: data.packageprice,
+      packageduration: data.packageduration,
       packagefeatures: data.packagefeatures.split(","),
     };
 

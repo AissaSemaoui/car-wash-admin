@@ -1,11 +1,27 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
+import { Trash2 } from "react-feather";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "reactstrap";
+import { sendRequest } from "../../helper/sendRequest";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
   const [data, setData] = useState(myData);
+
+  const handleDelete = async (index) => {
+    if (window.confirm("Are you sure you wish to delete this booking?")) {
+      const del = data;
+
+      const API_URL = `${process.env.REACT_APP_BASE_URL}/api/booking/${data[index]?.id}`;
+      const response = await sendRequest({ url: API_URL, method: "DELETE" });
+
+      if (!response?.success) return;
+
+      del.splice(index, 1);
+      setData([...del]);
+    }
+  };
 
   const renderEditable = (cellInfo) => {
     return (
@@ -51,10 +67,30 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
     selector: (row) => (
       <span>
         <Link to={`/bookings-list/${row.id}`}>
-          {" "}
           <Button>More Details</Button>
         </Link>
       </span>
+    ),
+  });
+
+  columns.push({
+    name: <b>Delete</b>,
+    id: "delete",
+    accessor: (str) => "delete",
+    cell: (row, index) => (
+      <div>
+        <span onClick={() => handleDelete(index)}>
+          <i
+            className="fa fa-trash"
+            style={{
+              width: 35,
+              fontSize: 20,
+              padding: 11,
+              color: "#e4566e",
+            }}
+          ></i>
+        </span>
+      </div>
     ),
   });
 

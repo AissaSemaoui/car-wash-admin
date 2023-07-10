@@ -54,10 +54,17 @@ const AgentsCard = ({
 
             const hour = `${startHour.toString().padStart(2, "0")}:30`;
 
-            const matchingBooking = agent.bookings.find(
-              (booking) =>
-                moment.utc(booking.bookingDateTime).format("HH:mm") === hour
-            );
+            const matchingBooking = agent.bookings.find((booking) => {
+              const bookingDuration =
+                Number(booking?.bookingthings[0].packageduration) || 1;
+              const bookingTime = moment
+                .utc(booking.bookingDateTime)
+                .subtract(2, "hours");
+
+              return Array.from({ length: bookingDuration }).some((_, i) => {
+                return bookingTime.add(2, "hours").format("HH:mm") === hour;
+              });
+            });
 
             const isMatchingHour = !!matchingBooking;
 
