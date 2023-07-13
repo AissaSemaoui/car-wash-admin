@@ -4,25 +4,28 @@ import Datatable from "./datatable";
 import { Card, CardBody, CardHeader, Container } from "reactstrap";
 import withDataFetching from "../../hoc/withDataFetching";
 import moment from "moment/moment";
+import { useTranslation } from "react-i18next";
 
 const List_bookings = ({ data }) => {
+  const { t } = useTranslation("bookings");
+
   const newData = data.booking.reverse().map((row) => ({
-    "Full name": `${row.firstname} ${row.lastname}`,
-    "Phone number": row.phonenumber,
-    "Agent name": row.AgentInfo?.agentname || "Not assigned",
-    Area: `${row.area}, ${row.block}`,
-    "Booking date": moment
+    [t("common:fullName")]: `${row.firstname} ${row.lastname}`,
+    [t("common:phoneNumber")]: row.phonenumber,
+    [t("common:agentName")]: row.AgentInfo?.agentname || "Not assigned",
+    [t("Area")]: `${row.area}, ${row.block}`,
+    [t("Booking date")]: moment
       .utc(row.bookingDateTime)
       .format("ddd, MMM D, h:mm A"),
     id: row._id,
   }));
   return (
     <Fragment>
-      <Breadcrumb title="Bookings List" parent="Bookings" />
+      <Breadcrumb title={t("Bookings List")} parent={t("Bookings")} />
       <Container fluid={true}>
         <Card>
           <CardHeader>
-            <h5>Bookings</h5>
+            <h5>{t("Bookings")}</h5>
           </CardHeader>
           <CardBody>
             <div className="clearfix"></div>

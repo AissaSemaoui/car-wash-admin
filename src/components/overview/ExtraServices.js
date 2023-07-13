@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Flex, Grid } from "@mantine/core";
+import { Flex, Grid, Title } from "@mantine/core";
 import withDataFetching from "../../hoc/withDataFetching";
 
 // const EXTRA_SERVICES_DATA = [
@@ -16,7 +16,7 @@ import withDataFetching from "../../hoc/withDataFetching";
 //   },
 // ];
 
-const ServiceCard = ({ extraservices, className }) => (
+const ServiceCard = ({ extraservices, extraservicesprice, className }) => (
   <Flex
     className={`extra-services__card ${className}`}
     align="center"
@@ -25,6 +25,9 @@ const ServiceCard = ({ extraservices, className }) => (
   >
     <div className="extra-services__card--content">
       <h2>{extraservices}</h2>
+      <Title order={3} size="h5" mt="xs" color="gray.8">
+        {extraservicesprice} KWD
+      </Title>
     </div>
   </Flex>
 );

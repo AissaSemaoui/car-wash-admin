@@ -107,7 +107,7 @@ export const validateStep = async (
               }
             }
 
-            if (formData.selectedPaymentMethod !== "Cash") {
+            if (formData.selectedPaymentMethod === "Cash") {
               await assignBooking();
             }
 

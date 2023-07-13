@@ -45,6 +45,27 @@ function ExtraServicesModal({ open, onCloseModal, onSubmit }) {
               </span>
             )}
           </FormGroup>
+          <FormGroup>
+            <label htmlFor="extraservicesprice" className="col-form-label">
+              Service Price:
+            </label>
+            <input
+              type="number"
+              step="0.1"
+              id="extraservicesprice"
+              className={`form-control ${
+                errors.extraservicesprice ? "is-invalid" : ""
+              }`}
+              {...register("extraservicesprice", {
+                required: "Service Price is required.",
+              })}
+            />
+            {errors.extraservicesprice && (
+              <span className="invalid-feedback">
+                {errors.extraservicesprice.message}
+              </span>
+            )}
+          </FormGroup>
         </ModalBody>
         <ModalFooter>
           <Button type="submit" color="primary">

@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "reactstrap";
 import { sendRequest } from "../../helper/sendRequest";
+import { useTranslation } from "react-i18next";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
+  const { t } = useTranslation("bookings");
+
   const [data, setData] = useState(myData);
 
   const handleDelete = async (index) => {
@@ -62,21 +65,21 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
   }
 
   columns.push({
-    name: <b>More details</b>,
-    header: <b>More details</b>,
+    name: <b>{t("common:moreDetails")}</b>,
+    header: <b>{t("common:moreDetails")}</b>,
     selector: (row) => (
       <span>
         <Link to={`/bookings-list/${row.id}`}>
-          <Button>More Details</Button>
+          <Button>{t("common:moreDetails")}</Button>
         </Link>
       </span>
     ),
   });
 
   columns.push({
-    name: <b>Delete</b>,
-    id: "delete",
-    accessor: (str) => "delete",
+    name: <b>{t("common:action")}</b>,
+    id: "action",
+    accessor: (str) => "action",
     cell: (row, index) => (
       <div>
         <span onClick={() => handleDelete(index)}>

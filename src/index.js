@@ -8,21 +8,25 @@ import RolesProvider from "./providers/RolesProvider";
 import AuthProvider from "./providers/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import ThemeProvider from "./providers/ThemeProvider";
+import i18n from "./i18n/i18n";
+import { I18nextProvider } from "react-i18next";
 
 const Root = () => {
   return (
     <React.StrictMode>
       <AuthProvider>
-        <BrowserRouter basename={"/"}>
-          <PerfectScrollbar>
-            <RolesProvider>
-              <ThemeProvider>
-                <Routers />
-              </ThemeProvider>
-            </RolesProvider>
-          </PerfectScrollbar>
-          <ToastContainer />
-        </BrowserRouter>
+        <I18nextProvider i18n={i18n}>
+          <BrowserRouter basename={"/"}>
+            <PerfectScrollbar>
+              <RolesProvider>
+                <ThemeProvider>
+                  <Routers />
+                </ThemeProvider>
+              </RolesProvider>
+            </PerfectScrollbar>
+            <ToastContainer />
+          </BrowserRouter>
+        </I18nextProvider>
       </AuthProvider>
     </React.StrictMode>
   );

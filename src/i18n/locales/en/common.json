@@ -1,0 +1,10 @@
+{
+  "firstName": "First name",
+  "lastName": "Last name",
+  "fullName": "Full name",
+  "phoneNumber": "Phone number",
+  "address": "Address",
+  "agentName": "Agent name",
+  "moreDetails": "More Details",
+  "action": "Action"
+}

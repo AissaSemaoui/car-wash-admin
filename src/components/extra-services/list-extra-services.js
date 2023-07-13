@@ -11,6 +11,7 @@ const List_extraServices = ({ data }) => {
 
   const newData = data.extraservices.reverse().map((row) => ({
     "Extra service name": row.extraservices,
+    Price: `${row.extraservicesprice} KWD`,
     id: row._id,
   }));
 
@@ -22,6 +23,7 @@ const List_extraServices = ({ data }) => {
 
     const newExtraServiceData = {
       extraservices: data.extraservices,
+      extraservicesprice: Number(data.extraservicesprice),
     };
 
     await sendRequest({

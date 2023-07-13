@@ -6,6 +6,7 @@ import { Card, CardBody, Col, Container, Media, Row } from "reactstrap";
 import withDataFetching from "../hoc/withDataFetching";
 
 const Dashboard = ({ data: { data } }) => {
+  console.log(data);
   return (
     <Fragment>
       <Breadcrumb title="Dashboard" parent="Dashboard" />
@@ -34,7 +35,12 @@ const Dashboard = ({ data: { data } }) => {
                     <span className="m-0">Total Earnings</span>
                     <h3 className="mb-0">
                       KWD{" "}
-                      <CountUp className="counter" end={data?.totalEarnings} />
+                      <CountUp
+                        decimal=","
+                        decimals={1}
+                        className="counter"
+                        end={data?.totalEarnings}
+                      />
                       <small> This Month</small>
                     </h3>
                   </Media>
@@ -102,6 +108,8 @@ const Dashboard = ({ data: { data } }) => {
                     <h3 className="mb-0">
                       KWD{" "}
                       <CountUp
+                        decimal=","
+                        decimals={1}
                         className="counter"
                         end={data?.daily?.dailyEarnings}
                       />
@@ -140,6 +148,8 @@ const Dashboard = ({ data: { data } }) => {
                     <h3 className="mb-0">
                       KWD{" "}
                       <CountUp
+                        decimal=","
+                        decimals={1}
                         className="counter"
                         end={data?.weekly?.weeklyEarnings}
                       />
@@ -178,6 +188,8 @@ const Dashboard = ({ data: { data } }) => {
                     <h3 className="mb-0">
                       KWD{" "}
                       <CountUp
+                        decimal=","
+                        decimals={1}
                         className="counter"
                         end={data?.monthly?.monthlyEarnings}
                       />
@@ -215,6 +227,8 @@ const Dashboard = ({ data: { data } }) => {
                     <h3 className="mb-0">
                       KWD{" "}
                       <CountUp
+                        decimal=","
+                        decimals={1}
                         className="counter"
                         end={data?.threeMonths?.threeMonthsEarnings}
                       />
@@ -252,6 +266,8 @@ const Dashboard = ({ data: { data } }) => {
                     <h3 className="mb-0">
                       KWD{" "}
                       <CountUp
+                        decimal=","
+                        decimals={1}
                         className="counter"
                         end={data?.yearly?.yearlyEarnings}
                       />

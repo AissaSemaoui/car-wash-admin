@@ -7,8 +7,11 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import BookingForm from "./booking-form";
+import { useTranslation } from "react-i18next";
 
 const SingleBooking = () => {
+  const { t } = useTranslation("bookings");
+
   const { id } = useParams();
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/booking/${id}`;
 
@@ -17,29 +20,29 @@ const SingleBooking = () => {
       <div className="table-responsive profile-table">
         <Table className="table-responsive">
           <tbody>
-            <h5 className="f-w-600 f-16">Customer Info</h5>
+            <h5 className="f-w-600 f-16">{t("Customer Info")}</h5>
             <tr>
-              <td>First Name:</td>
+              <td>{t("firstName")}:</td>
               <td>{booking.firstname}</td>
             </tr>
             <tr>
-              <td>Last Name:</td>
+              <td>{t("lastName")}:</td>
               <td>{booking.lastname}</td>
             </tr>
             <tr>
-              <td>Phone Number:</td>
+              <td>{t("phoneNumber")}:</td>
               <td>{booking.phonenumber}</td>
             </tr>
             <tr>
-              <td>Address:</td>
+              <td>{t("address")}:</td>
               <td>
                 {booking.area}, {booking.avenue}, {booking.street},{" "}
                 {booking.block}, {booking.house}
               </td>
             </tr>
-            <h5 className="f-w-600 f-16">Booking Info</h5>
+            <h5 className="f-w-600 f-16">{t("Booking Info")}</h5>
             <tr>
-              <td>Vehicle Type:</td>
+              <td>{t("Vehicle Type")}:</td>
               <td>{booking?.bookingthings[0]?.vehicletype}</td>
             </tr>
             <tr>
@@ -50,10 +53,20 @@ const SingleBooking = () => {
               <td>Package Price:</td>
               <td>{booking?.bookingthings[0]?.packageprice} KWD</td>
             </tr>
-            <tr>
-              <td>Extra Service Name:</td>
-              <td>{booking?.bookingthings[0]?.extraservicesname}</td>
-            </tr>
+            {booking?.bookingthings[0]?.extraservicesname && (
+              <>
+                <tr>
+                  <td>Extra Service Name:</td>
+                  <td>{booking?.bookingthings[0]?.extraservicesname}</td>
+                </tr>
+                <tr>
+                  <td>Extra Service Price:</td>
+                  <td>
+                    {booking?.bookingthings[0]?.extraservicesprice || "/"}
+                  </td>
+                </tr>
+              </>
+            )}
             <tr>
               <td>Booking Date:</td>
               <td>
