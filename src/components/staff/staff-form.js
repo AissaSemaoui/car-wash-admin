@@ -46,8 +46,9 @@ function StaffForm({ data, onSubmit }) {
               {...register("phonenumber", {
                 required: "Phone number is required.",
                 pattern: {
-                  value: /^[0-9]{8}$/,
-                  message: "Phone number must contain only digits.",
+                  value: /^(\+)?\d{1,3}\d{7,14}$/,
+                  message:
+                    "Please write a vaild Phone number and add your country code.",
                 },
               })}
             />
