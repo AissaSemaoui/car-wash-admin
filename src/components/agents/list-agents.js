@@ -5,8 +5,10 @@ import { Button, Card, CardBody, CardHeader, Container } from "reactstrap";
 import withDataFetching from "../../hoc/withDataFetching";
 import AgentModal from "./agent-modal";
 import { sendRequest } from "../../helper/sendRequest";
+import { useTranslation } from "react-i18next";
 
 const List_agents = ({ data }) => {
+  const { t } = useTranslation("agents");
   const [openModal, setOpenModal] = useState(false);
 
   const newData = data.agents.reverse().map((row) => ({

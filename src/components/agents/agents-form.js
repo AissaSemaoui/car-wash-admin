@@ -28,9 +28,7 @@ function AgentForm({ data, onSubmit }) {
               })}
             />
             {errors.agentname && (
-              <span className="invalid-feedback">
-                {errors.agentname.message}
-              </span>
+              <span className="error-message">{errors.agentname.message}</span>
             )}
           </FormGroup>
           <FormGroup>
@@ -53,7 +51,7 @@ function AgentForm({ data, onSubmit }) {
               })}
             />
             {errors.phonenumber && (
-              <span className="invalid-feedback">
+              <span className="error-message">
                 {errors.phonenumber.message}
               </span>
             )}

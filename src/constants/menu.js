@@ -1,4 +1,12 @@
-import { Home, Calendar, Package, Droplet, User, Users } from "react-feather";
+import {
+  Home,
+  Calendar,
+  Package,
+  Droplet,
+  User,
+  Users,
+  Settings,
+} from "react-feather";
 
 // ADMIN_MENUITEMS;
 
@@ -63,6 +71,14 @@ export const ADMIN_MENUITEMS = [
     path: "/dashboard",
     title: "Report",
     icon: Home,
+    type: "link",
+    badgeType: "primary",
+    active: false,
+  },
+  {
+    path: "/settings",
+    title: "Settings",
+    icon: Settings,
     type: "link",
     badgeType: "primary",
     active: false,

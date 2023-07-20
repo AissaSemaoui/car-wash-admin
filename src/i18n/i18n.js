@@ -9,6 +9,8 @@ i18n.use(initReactI18next).init({
     en: {
       common: require("./locales/en/common.json"),
       bookings: require("./locales/en/bookings.json"),
+      packages: require("./locales/en/packages.json"),
+      extraServices: require("./locales/en/extraServices.json"),
     },
     ar: {
       common: require("./locales/ar/common.json"),

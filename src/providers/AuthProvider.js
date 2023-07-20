@@ -64,6 +64,7 @@ function AuthProvider({ children }) {
     }
 
     localStorage.setItem("token", token);
+    localStorage.setItem("admin_email", values.email);
 
     setIsAuthorized(true);
 

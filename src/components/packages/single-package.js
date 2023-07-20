@@ -7,8 +7,11 @@ import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import PackageForm from "./package-form";
 import { sendRequest } from "../../helper/sendRequest";
+import { useTranslation } from "react-i18next";
 
 const SinglePackage = () => {
+  const { t } = useTranslation("packages");
+
   const { id } = useParams();
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/wash-packages/${id}`;
 
@@ -30,37 +33,37 @@ const SinglePackage = () => {
 
   const Content = ({ data: { washPackage } }) => (
     <div className="tab-pane fade show active">
-      <h5 className="f-w-600 f-16">Package Details</h5>
+      <h5 className="f-w-600 f-16">{t("Package Details")}</h5>
       <div className="table-responsive profile-table">
         <Table className="table-responsive">
           <tbody>
             <tr>
-              <td>Package Name:</td>
+              <td>{t("common:packageName")}:</td>
               <td>{washPackage.packagename}</td>
             </tr>
             <tr>
-              <td>Package Prices: </td>
+              <td>{t("Package Prices")}: </td>
               <td>
                 <div className="wash-package-price">
-                  <span>SUV:</span>{" "}
+                  <span>{t("SUV")}:</span>{" "}
                   <span>
                     <b>{washPackage.packageprice?.suv}</b> KWD
                   </span>
                 </div>
                 <div className="wash-package-price">
-                  <span>Sedan:</span>{" "}
+                  <span>{t("Sedan")}:</span>{" "}
                   <span>
                     <b>{washPackage.packageprice?.sedan}</b> KWD
                   </span>
                 </div>
                 <div className="wash-package-price">
-                  <span>Pickup:</span>{" "}
+                  <span>{t("Pickup")}:</span>{" "}
                   <span>
                     <b>{washPackage.packageprice?.pickup}</b> KWD
                   </span>
                 </div>
                 <div className="wash-package-price">
-                  <span>Bike:</span>{" "}
+                  <span>{t("Bike")}:</span>{" "}
                   <span>
                     <b>{washPackage.packageprice?.bike}</b> KWD
                   </span>
@@ -68,7 +71,7 @@ const SinglePackage = () => {
               </td>
             </tr>
             <tr>
-              <td>Features:</td>
+              <td>{t("Features")}:</td>
               <td>
                 {washPackage?.packagefeatures?.map((feature) => (
                   <div key={feature}>- {feature}</div>
@@ -100,8 +103,8 @@ const SinglePackage = () => {
               <CardBody>
                 <Tabs>
                   <TabList className="nav nav-tabs tab-coupon">
-                    <Tab className="nav-link">Details</Tab>
-                    <Tab className="nav-link">Edit</Tab>
+                    <Tab className="nav-link">{t("common:details")}</Tab>
+                    <Tab className="nav-link">{t("common:edit")}</Tab>
                   </TabList>
                   <TabPanel>
                     <ContentWithData />

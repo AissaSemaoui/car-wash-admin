@@ -1,10 +1,13 @@
 import React, { Fragment, useState } from "react";
 import DataTable from "react-data-table-component";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "reactstrap";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
+  const { t } = useTranslation("Packages");
+
   const [checkedValues, setCheckedValues] = useState([]);
   const [data, setData] = useState(myData);
   const selectRow = (e, i) => {
@@ -41,7 +44,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
   };
 
   const handleDelete = (index) => {
-    if (window.confirm("Are you sure you wish to delete this item?")) {
+    if (window.confirm(t("common:deleteItemConfirmation?"))) {
       const del = data;
       del.splice(index, 1);
       setData([...del]);
@@ -70,12 +73,12 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
   }
 
   columns.push({
-    name: <b>More details</b>,
-    header: <b>More details</b>,
+    name: <b>{t("common:moreDetails")}</b>,
+    header: <b>{t("common:moreDetails")}</b>,
     selector: (row) => (
       <span>
         <Link to={`/packages-list/${row.id}`}>
-          <Button>More Details</Button>
+          <Button>{t("common:moreDetails")}</Button>
         </Link>
       </span>
     ),
@@ -87,11 +90,11 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
         <button
           className="btn btn-danger btn-sm btn-delete mb-0 b-r-4"
           onClick={(e) => {
-            if (window.confirm("Are you sure you wish to delete this item?"))
+            if (window.confirm(t("common:deleteItemConfirmation?")))
               handleRemoveRow();
           }}
         >
-          Delete
+          {t("common:delete")}
         </button>
       ),
       id: "delete",
@@ -115,7 +118,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
     });
   } else {
     columns.push({
-      name: <b>Action</b>,
+      name: <b>{t("common:action")}</b>,
       id: "delete",
       accessor: (str) => "delete",
       cell: (row, index) => (

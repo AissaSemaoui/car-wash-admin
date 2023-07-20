@@ -28,9 +28,7 @@ function StaffForm({ data, onSubmit }) {
               })}
             />
             {errors.staffname && (
-              <span className="invalid-feedback">
-                {errors.staffname.message}
-              </span>
+              <span className="error-message">{errors.staffname.message}</span>
             )}
           </FormGroup>
           <FormGroup>
@@ -53,7 +51,7 @@ function StaffForm({ data, onSubmit }) {
               })}
             />
             {errors.phonenumber && (
-              <span className="invalid-feedback">
+              <span className="error-message">
                 {errors.phonenumber.message}
               </span>
             )}

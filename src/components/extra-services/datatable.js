@@ -3,8 +3,11 @@ import DataTable from "react-data-table-component";
 import "react-toastify/dist/ReactToastify.css";
 
 import { sendRequest } from "../../helper/sendRequest";
+import { useTranslation } from "react-i18next";
 
 const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
+  const { t } = useTranslation("extraServices");
+
   const [checkedValues, setCheckedValues] = useState([]);
   const [data, setData] = useState(myData);
   const selectRow = (e, i) => {
@@ -41,7 +44,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
   };
 
   const handleDelete = async (index) => {
-    if (window.confirm("Are you sure you wish to delete this item?")) {
+    if (window.confirm(t("common:deleteItemConfirmation"))) {
       const del = data;
 
       const API_URL = `${process.env.REACT_APP_BASE_URL}/api/extra-services/${data[index]?.id}`;
@@ -82,11 +85,11 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
         <button
           className="btn btn-danger btn-sm btn-delete mb-0 b-r-4"
           onClick={(e) => {
-            if (window.confirm("Are you sure you wish to delete this item?"))
+            if (window.confirm(t("common:deleteItemConfirmation")))
               handleRemoveRow();
           }}
         >
-          Delete
+          {t("common:delete")}
         </button>
       ),
       id: "delete",
@@ -110,7 +113,7 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
     });
   } else {
     columns.push({
-      name: <b>Action</b>,
+      name: <b>{t("common:action")}</b>,
       id: "delete",
       accessor: (str) => "delete",
       cell: (row, index) => (

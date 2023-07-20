@@ -5,19 +5,22 @@ import { Button, Card, CardBody, CardHeader, Container } from "reactstrap";
 import withDataFetching from "../../hoc/withDataFetching";
 import PackageModal from "./package-modal";
 import { sendRequest } from "../../helper/sendRequest";
+import { useTranslation } from "react-i18next";
 
 const List_pacakges = ({ data }) => {
+  const { t } = useTranslation("packages");
+
   const [openModal, setOpenModal] = useState(false);
 
   const newData = data.packages.reverse().map((row) => ({
-    "Package name": row.packagename,
-    "Package duration": row?.packageduration
+    [t("packageName")]: row.packagename,
+    [t("Package duration")]: row?.packageduration
       ? `${row?.packageduration} h`
-      : "Not Assigned",
-    "SUV price": `${row.packageprice?.suv} KWD`,
-    "Sedan price": `${row.packageprice?.sedan} KWD`,
-    "Pickup price": `${row.packageprice?.pickup} KWD`,
-    "Bike price": `${row.packageprice?.bike} KWD`,
+      : t("notAssigned"),
+    [t("SUV price")]: `${row.packageprice?.suv} KWD`,
+    [t("Sedan price")]: `${row.packageprice?.sedan} KWD`,
+    [t("Pickup price")]: `${row.packageprice?.pickup} KWD`,
+    [t("Bike price")]: `${row.packageprice?.bike} KWD`,
     id: row._id,
   }));
 
@@ -49,7 +52,7 @@ const List_pacakges = ({ data }) => {
       <Container fluid={true}>
         <Card>
           <CardHeader>
-            <h5>Packages</h5>
+            <h5>{t("Packages")}</h5>
           </CardHeader>
           <CardBody>
             <div className="btn-popup pull-right">
@@ -61,7 +64,7 @@ const List_pacakges = ({ data }) => {
                 data-original-title="test"
                 data-target="#exampleModal"
               >
-                Add Package
+                {t("Add Package")}
               </Button>
               <PackageModal
                 onSubmit={handleCreatePackage}

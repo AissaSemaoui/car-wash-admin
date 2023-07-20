@@ -6,5 +6,18 @@
   "address": "Address",
   "agentName": "Agent name",
   "moreDetails": "More Details",
-  "action": "Action"
+  "action": "Action",
+  "packageName": "Package Name",
+  "packagePrice": "Package Price",
+  "extraServiceName": "Extra Service Name",
+  "extraServicePrice": "Extra Service Price",
+  "agentDetails": "Agent Details",
+  "noAssignedAgent": "No Assigned Agent",
+  "details": "Details",
+  "edit": "Edit",
+  "delete": "Delete",
+  "notAssigned": "Not Assigned",
+  "deleteItemConfirmation?": "Are you sure you wish to delete this item?",
+  "submit": "Submit",
+  "extraServices": "Extra Services"
 }

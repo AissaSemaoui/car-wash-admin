@@ -2,8 +2,11 @@ import React, { Fragment } from "react";
 import { Form, FormGroup, Input, Label, Spinner } from "reactstrap";
 import { useDataFetching } from "../../hooks/useDataFetching";
 import { sendRequest } from "../../helper/sendRequest";
+import { useTranslation } from "react-i18next";
 
 function BookingForm({ bookingId }) {
+  const { t } = useTranslation("bookings");
+
   // const API_URL = `${process.env.REACT_APP_BASE_URL}/api/available-agents/${bookingId}`;
   const API_URL = `${process.env.REACT_APP_BASE_URL}/api/agents/allagents?select=agentname,_id}`;
   const { data: AgentsList, isLoading } = useDataFetching(API_URL);
@@ -16,7 +19,7 @@ function BookingForm({ bookingId }) {
         ) : (
           <FormGroup>
             <Label htmlFor="agent" className="col-form-label">
-              Assign Booking to Agent
+              {t("Assign Booking to Agent")}
             </Label>
             <Input
               type="select"

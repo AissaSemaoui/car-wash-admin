@@ -22,19 +22,19 @@ const SingleBooking = () => {
           <tbody>
             <h5 className="f-w-600 f-16">{t("Customer Info")}</h5>
             <tr>
-              <td>{t("firstName")}:</td>
+              <td>{t("common:firstName")}:</td>
               <td>{booking.firstname}</td>
             </tr>
             <tr>
-              <td>{t("lastName")}:</td>
+              <td>{t("common:lastName")}:</td>
               <td>{booking.lastname}</td>
             </tr>
             <tr>
-              <td>{t("phoneNumber")}:</td>
+              <td>{t("common:phoneNumber")}:</td>
               <td>{booking.phonenumber}</td>
             </tr>
             <tr>
-              <td>{t("address")}:</td>
+              <td>{t("common:address")}:</td>
               <td>
                 {booking.area}, {booking.avenue}, {booking.street},{" "}
                 {booking.block}, {booking.house}
@@ -46,21 +46,21 @@ const SingleBooking = () => {
               <td>{booking?.bookingthings[0]?.vehicletype}</td>
             </tr>
             <tr>
-              <td>Package Name:</td>
+              <td>{t("common:packageName")}:</td>
               <td>{booking?.bookingthings[0]?.packagename}</td>
             </tr>
             <tr>
-              <td>Package Price:</td>
+              <td>{t("common:packagePrice")}:</td>
               <td>{booking?.bookingthings[0]?.packageprice} KWD</td>
             </tr>
             {booking?.bookingthings[0]?.extraservicesname && (
               <>
                 <tr>
-                  <td>Extra Service Name:</td>
+                  <td>{t("common:extraServiceName")}:</td>
                   <td>{booking?.bookingthings[0]?.extraservicesname}</td>
                 </tr>
                 <tr>
-                  <td>Extra Service Price:</td>
+                  <td>{t("common:extraServicePrice")}:</td>
                   <td>
                     {booking?.bookingthings[0]?.extraservicesprice || "/"}
                   </td>
@@ -68,7 +68,7 @@ const SingleBooking = () => {
               </>
             )}
             <tr>
-              <td>Booking Date:</td>
+              <td>{t("Booking Date")}:</td>
               <td>
                 {moment
                   .utc(booking.bookingDateTime)
@@ -78,19 +78,19 @@ const SingleBooking = () => {
           </tbody>
         </Table>
       </div>
-      <h5 className="f-w-600 f-16">Agent Details</h5>
+      <h5 className="f-w-600 f-16">{t("common:agentDetails")}</h5>
       <div className="table-responsive profile-table">
         {!booking?.AgentInfo?.agentname ? (
-          <h6>No Assigned Agent</h6>
+          <h6>{t("common:noAssignedAgent")}</h6>
         ) : (
           <Table className="table-responsive">
             <tbody>
               <tr>
-                <td>Agent Name</td>
+                <td>{t("common:agentName")}</td>
                 <td>{booking.AgentInfo?.agentname}</td>
               </tr>
               <tr>
-                <td>Phone Number</td>
+                <td>{t("common:phoneNumber")}</td>
                 <td>{booking.AgentInfo?.agentphonenumber}</td>
               </tr>
             </tbody>
@@ -114,8 +114,8 @@ const SingleBooking = () => {
               <CardBody>
                 <Tabs>
                   <TabList className="nav nav-tabs tab-coupon">
-                    <Tab className="nav-link">Details</Tab>
-                    <Tab className="nav-link">Edit</Tab>
+                    <Tab className="nav-link">{t("common:details")}</Tab>
+                    <Tab className="nav-link">{t("common:edit")}</Tab>
                   </TabList>
                   <TabPanel>
                     <ContentWithData />

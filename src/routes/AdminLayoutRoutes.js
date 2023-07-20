@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 import App from "../components/app";
-import Datatable from "../components/common/datatable";
 import Dashboard from "../components/dashboard";
 import ListBookings from "../components/bookings/list-bookings";
 import SingleBooking from "../components/bookings/single-booking";
@@ -13,6 +12,7 @@ import SingleAgent from "../components/agents/single-agent";
 import ListStaff from "../components/staff/list-staff";
 import SingleStaff from "../components/staff/single-staff";
 import MainStepper from "../components/overview/MainStepper";
+import Settings from "../components/settings/settings";
 
 const AdminLayoutRoutes = () => {
   return (
@@ -72,8 +72,8 @@ const AdminLayoutRoutes = () => {
           />
 
           <Route
-            path={`${process.env.PUBLIC_URL}/data-table`}
-            element={<Datatable />}
+            path={`${process.env.PUBLIC_URL}/settings`}
+            element={<Settings />}
           />
         </Route>
       </Routes>

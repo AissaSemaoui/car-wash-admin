@@ -5,8 +5,11 @@ import { Button, Card, CardBody, CardHeader, Container } from "reactstrap";
 import withDataFetching from "../../hoc/withDataFetching";
 import { sendRequest } from "../../helper/sendRequest";
 import ExtraServicesModal from "./extra-services-modal";
+import { useTranslation } from "react-i18next";
 
 const List_extraServices = ({ data }) => {
+  const { t } = useTranslation("extraServices");
+
   const [openModal, setOpenModal] = useState(false);
 
   const newData = data.extraservices.reverse().map((row) => ({
@@ -36,11 +39,14 @@ const List_extraServices = ({ data }) => {
   };
   return (
     <Fragment>
-      <Breadcrumb title="Extra Services List" parent="Extra Services" />
+      <Breadcrumb
+        title={t("Extra Services List")}
+        parent={t("common:extraServices")}
+      />
       <Container fluid={true}>
         <Card>
           <CardHeader>
-            <h5>Extra Services</h5>
+            <h5>{t("common:extraServices")}</h5>
           </CardHeader>
           <CardBody>
             <div className="btn-popup pull-right">
@@ -52,7 +58,7 @@ const List_extraServices = ({ data }) => {
                 data-original-title="test"
                 data-target="#exampleModal"
               >
-                Add Extra Service
+                {t("Add Extra Service")}
               </Button>
               <ExtraServicesModal
                 onSubmit={handleCreateExtraService}
