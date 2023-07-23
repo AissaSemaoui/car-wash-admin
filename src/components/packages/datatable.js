@@ -43,9 +43,16 @@ const Datatable = ({ myData, myClass, multiSelectOption, pagination }) => {
     );
   };
 
-  const handleDelete = (index) => {
-    if (window.confirm(t("common:deleteItemConfirmation?"))) {
+  const handleDelete = async (index) => {
+    if (window.confirm("Are you sure you wish to delete this item?")) {
       const del = data;
+
+      const API_URL = `${process.env.REACT_APP_BASE_URL}/api/wash-packages/${data[index]?.id}`;
+
+      const response = await sendRequest({ url: API_URL, method: "DELETE" });
+
+      if (!response?.success) return;
+
       del.splice(index, 1);
       setData([...del]);
     }
