@@ -58,6 +58,7 @@ function UserDetails({
         <TextInput
           label="Phone number"
           placeholder="text here..."
+          defaultValue="+965"
           size="md"
           variant="filled"
           className="user-details__input"

@@ -38,6 +38,7 @@ function StaffForm({ data, onSubmit }) {
             <input
               type="text"
               id="phonenumber"
+              defaultValue="+965"
               className={`form-control ${
                 errors.phonenumber ? "is-invalid" : ""
               }`}
